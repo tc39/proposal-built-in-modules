@@ -118,9 +118,6 @@ Acknowledge that this is something that needs to be incorporated.
 This topic has been talked about a lot in the past. There has been some recent activity around it as well:
 
 - <https://github.com/drufball/layered-apis>
-- <https://github.com/tc39/Reflector/issues/153>
-- <https://github.com/tc39/Reflector/issues/133>
 - <https://github.com/tc39/ecma262/issues/395>
-- <https://github.com/drufball/layered-apis/issues/26>
 
  
