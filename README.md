@@ -100,11 +100,11 @@ const mp = new Map([["e", 8], ["n", 9], ["z", 0], ["o", 1], ["t", 2]);
 
 len(ar); // => 3
 len(st); // => 4
-len(mp); // => 4
+len(mp); // => 5
 
 map(ar, (val, idx) => val * 2); // => Array {2, 4, 6}
 map(st, (val, idx) => val * 2); // => Set {8, 10, 12, 14}
-map(mp, (val, key) => val * 2); // => Map { e: 16, n: 18, z: 0, o: 2 }
+map(mp, (val, key) => val * 2); // => Map { e: 16, n: 18, z: 0, o: 2, t: 4 }
 ```
 
 ### Polyfilling and Versioning
@@ -120,4 +120,4 @@ This topic has been talked about a lot in the past. There has been some recent a
 - <https://github.com/drufball/layered-apis>
 - <https://github.com/tc39/ecma262/issues/395>
 
- 
+
