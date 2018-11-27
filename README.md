@@ -2,15 +2,15 @@
 
 **Status:** Stage 1
 
-This proposal describes adding a standard library to the JavaScript that holds a set of API's that can be used at runtime. It also describes how the standard library can be used by developers, what API's could be part of the standard library and how it can be extended/evolved over time.
+This proposal describes adding a standard library to JavaScript that holds a set of APIs that can be used at runtime. It also describes how the standard library can be used by developers, what APIs could be part of the standard library and how it can be extended/evolved over time.
 
 ## Motivation
 
-When using other programming languages the developer gets the core features defined by the language (syntax, operators, primitive types etc.) and usually a (sometimes exhaustive) standard library that can be leveraged for common functionality. These languages can make certain assumptions on the environment the code is run in like which language features are supported and what API's are available in the standard library.
+When using other programming languages, the developer gets the core features defined by the language (syntax, operators, primitive types etc.) and usually a (sometimes exhaustive) standard library that can be leveraged for common functionality. These languages can make certain assumptions about the environment the code is run in like which language features are supported and what APIs are available in the standard library.
 
-Because of the distributed nature of the Web Platform and JavaScript code running on varying clients these assumptions cannot be made when programming for the Web. Code has to be downloaded to clients, incurring a network and parse cost and only after the code is running can features be detected in a (sometimes) cumbersome way. This results in pages or applications including libraries with abstracted common functionality (jQuery, lodash, ramda), libraries to do feature detection and polyfilling (core-js et all) or compiling down to the lowest common feature set for their targeted users (using Typescript or Babel).
+Because of the distributed nature of the web platform and JavaScript code running on varying clients, these assumptions cannot be made when programming for the web. Code has to be downloaded to clients, incurring a network and parse cost and only after the code is running can features be detected in a (sometimes) cumbersome way. This results in pages or applications including libraries with abstracted common functionality (jQuery, Lodash, Ramda), libraries to do feature detection and polyfilling (core-js et al) or compiling down to the lowest common feature set for their targeted users (using TypeScript or Babel).
 
-These are all detremental for both the developer and the end user. Evolving the JavaScript language through the prototype chain adding new (standard library) methods can become problematic over time forcing a fallback to less ideal features because of web compatibility issues.
+These are all detrimental for both the developer and the end user. Evolving the JavaScript language through the prototype chain adding new (standard library) methods can become problematic over time forcing a fallback to less ideal features because of web compatibility issues.
 
 ## Benefits
 
@@ -32,7 +32,7 @@ The standard library furthermore has versioning build into it to avoid conflicts
 
 ### **Fallback Mechanism**
 
-Importing features from the standard library has a fallback mechanism that can be used to override existing features if the version does not match or provide entire implementations when they are not available.The standard library can facilitate in feature detected to avoid cumbersome runtime checks (using error handling for example).
+Importing features from the standard library has a fallback mechanism that can be used to override existing features if the version does not match or provide entire implementations when they are not available. The standard library can facilitate in feature detection to avoid cumbersome runtime checks (using error handling as an example).
 
 ### **Speed**
 
@@ -40,7 +40,7 @@ Features need to be explicitly imported from the standard library when used, usi
 
 > Question: Is this a weak argument? Engines already do lazy startup shenanigans
 
-Some standard library functions can be done in regular JavaScript, which is currently already the case. Moving functionality from external libraries (like lodash or ramda) allows them to tap into native code (C++) for heavy lifting and performance consious code.
+Some standard library functions can be done in regular JavaScript, which is currently already the case. Moving functionality from external libraries (like Lodash or Ramda) allows them to tap into native code (C++) for heavy lifting and performance consious code.
 
 Pages and applications furthermore don't have to include shared libraries anymore which helps with download speed and parse speed.
 
@@ -58,7 +58,7 @@ Still explorating:
 
 ## Strawman Solution
 
-### Protected namespace
+### Protected Namespace
 
 A protected namespace is reserved for the standard library that can be used to import functionality. Some examples could be:
 
@@ -82,7 +82,7 @@ const d = new Date(2018, 7, 1);
 
 > Describe that the prototype is frozen, and what we mean by that
 
-It's our intent that modules in the standard library are generally non effectfull (as a policy) evne though the are no limitation in the spec that enforce this.
+It's our intent that modules in the standard library are generally non effectfull (as a policy) evne though the are no limitations in the spec that enforce this.
 
 ### Generic Functions
 
