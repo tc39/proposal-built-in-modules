@@ -32,7 +32,7 @@ The standard library furthermore has versioning build into it to avoid conflicts
 
 ### **Fallback Mechanism**
 
-Importing features from the standard library has a fallback mechanism that can be used to override existing features if the version does not match or provide entire implementations when they are not available.The standard library can facilitate in feature detected to avoid cumbersome runtime checks (using error handling for example).
+Importing features from the standard library has a fallback mechanism that can be used to override existing features if the version does not match or provide entire implementations when they are not available. The standard library can facilitate in feature detected to avoid cumbersome runtime checks (using error handling for example).
 
 ### **Speed**
 
@@ -82,7 +82,7 @@ const d = new Date(2018, 7, 1);
 
 > Describe that the prototype is frozen, and what we mean by that
 
-It's our intent that modules in the standard library are generally non effectfull (as a policy) evne though the are no limitation in the spec that enforce this.
+It's our intent that modules in the standard library are generally non effectfull (as a policy) even though the are no limitation in the spec that enforce this.
 
 ### Generic Functions
 
