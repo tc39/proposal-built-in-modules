@@ -58,7 +58,7 @@ Still exploring:
 
 ## Strawman Solution
 
-### Protected namespace
+### Protected Namespace
 
 A protected namespace is reserved for the standard library that can be used to import functionality. Some examples could be:
 
@@ -100,11 +100,11 @@ const mp = new Map([["e", 8], ["n", 9], ["z", 0], ["o", 1], ["t", 2]);
 
 len(ar); // => 3
 len(st); // => 4
-len(mp); // => 4
+len(mp); // => 5
 
 map(ar, (val, idx) => val * 2); // => Array {2, 4, 6}
 map(st, (val, idx) => val * 2); // => Set {8, 10, 12, 14}
-map(mp, (val, key) => val * 2); // => Map { e: 16, n: 18, z: 0, o: 2 }
+map(mp, (val, key) => val * 2); // => Map { e: 16, n: 18, z: 0, o: 2, t: 4 }
 ```
 
 ### Polyfilling and Versioning
