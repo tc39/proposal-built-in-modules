@@ -6,9 +6,11 @@ This proposal describes adding a standard library to the JavaScript that holds a
 
 ## Scope
 
-This proposal would only cover features which would be useful in JavaScript in general, not things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it probably isn't in scope.)
+The goal of this proposal is to define a mechanism for providing a standard library in JavaScript which would not rely on adding new things to the global object or new properties to builtins like Array.prototype and so could be more extensive.
 
-This proposal would also not add change the behavior of any existing code or add any new syntax, except possibly the syntax for importing the standard library code.
+The library itself is tangential to this proposal, and would be built and expanded upon in later efforts. Such a library would only cover features which would be useful in JavaScript in general, not things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it probably isn't in scope.)
+
+The library would also not change the behavior of any existing code or add any new syntax, except possibly the syntax for importing the standard library code.
 
 ## Motivation
 
