@@ -4,6 +4,14 @@
 
 This proposal describes adding a standard library to JavaScript that holds a set of APIs that can be used at runtime. It also describes how the standard library can be used by developers, what APIs could be part of the standard library and how it can be extended/evolved over time.
 
+## Scope
+
+The goal of this proposal is to define a mechanism for providing a more extensive standard library in JavaScript than is currently available.
+
+The library itself is tangential to this proposal, and would be built and expanded upon in later efforts. Such a library would only cover features which would be useful in JavaScript in general, not things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it probably isn't in scope.) See [#16](https://github.com/tc39/proposal-javascript-standard-library/issues/16) for discussion of the extent and contents of the library.
+
+This proposal would not change the behavior of any existing code or add any new syntax, except possibly the syntax for importing the standard library code.
+
 ## Motivation
 
 When using other programming languages the developer gets the core features defined by the language (syntax, operators, primitive types etc.) and usually a (sometimes exhaustive) standard library that can be leveraged for common functionality. These languages can make certain assumptions on the environment the code is run in like which language features are supported and what APIs are available in the standard library.
