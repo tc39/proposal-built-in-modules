@@ -104,7 +104,7 @@ import { len, map } from "std:builtins";
 
 const ar = [1, 2, 3];
 const st = new Set([4, 5, 6, 7]);
-const mp = new Map([["e", 8], ["n", 9], ["z", 0], ["o", 1], ["t", 2]);
+const mp = new Map([["e", 8], ["n", 9], ["z", 0], ["o", 1], ["t", 2]]);
 
 len(ar); // => 3
 len(st); // => 4
