@@ -19,8 +19,8 @@ library features as modules in the future.
 ## Scope
 
 The goal of this proposal is to define a mechanism for enabling a more extensive standard library in
-JavaScript than is currently available. It focusses on infrastructure for and not the contents of this
-library.
+JavaScript than is currently available. This proposal would not change the behavior of any existing code or
+add any new syntax, except possibly the syntax for importing the standard library code.
 
 The contents of the standard library is tangential to this proposal, and would be built and expanded upon in
 later efforts. Such a library would only cover features which would be useful in JavaScript in general, not
@@ -29,16 +29,22 @@ but not in node or on [embedded devices](https://www.moddable.com/) or [robots](
 probably isn't in scope.) See [#16](https://github.com/tc39/proposal-javascript-standard-library/issues/16)
 for discussion of the extent and contents of the library.
 
-This proposal would not change the behavior of any existing code or add any new syntax, except possibly the
-syntax for importing the standard library code.
 
 ## Motivation
 
-When using other programming languages the developer gets the core features defined by the language (syntax, operators, primitive types etc.) and usually a (sometimes exhaustive) standard library that can be leveraged for common functionality. These languages can make certain assumptions on the environment the code is run in like which language features are supported and what APIs are available in the standard library.
+Most programming languages have core language features (syntax, operators, primitives etc.) and also
+include a standard library with common functionality. Developers are able to use this in their programs
+immediately because the library is bundled with the runtime.
 
-Because of the distributed nature of the Web Platform and JavaScript code running on varying clients, these assumptions cannot be made when programming for the Web. Code has to be downloaded to clients, incurring a network and parse cost and only after the code is running can features be detected in a (sometimes) cumbersome way. This results in pages or applications including libraries with abstracted common functionality (jQuery, Lodash, Ramda), libraries to do feature detection and polyfilling (core-js, et al) or compiling down to the lowest common feature set for their targeted users (using TypeScript or Babel).
+The JavaScript language does not have a standard library resulting in common functionality being developed
+into libraries that are included with JavaScript programs. Because these libraries need to be included in every
+program instead of being provided by the runtime these programs are bigger with users paying the cost of
+downloading and parsing the extra bits. These libraries are also harder to cache between programs.
 
-These are all detrimental for both the developer and the end user. Evolving the JavaScript language through the prototype chain adding new (standard library) methods can become problematic over time forcing a fallback to less ideal features because of web compatibility issues.
+JavaScript programs run on a variety of clients with different runtime implementations and versions. Libraries
+have to account for these different environments by including code that is not required or even run on some
+clients, but does incur a download and parse cost.
+
 
 ## Benefits
 
