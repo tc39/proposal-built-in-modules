@@ -9,7 +9,7 @@ library features as modules in the future.
 
   * [Scope](#scope)
   * [Motivation](#motivation)
-  * [Benefits](#benefits)
+  * [Proposed Solution](#proposed-solution)
   * [Requirements](#requirements)
   * [Strawman Solution](#strawman-solution)
   * [Related Efforts](#related-efforts)
@@ -46,37 +46,26 @@ have to account for these different environments by including code that is not r
 clients, but does incur a download and parse cost.
 
 
-## Benefits
+## Proposed Solution
 
-### **Availability**
+To enable developers to access common functionality at runtime that is provided by the JavaScript engine a
+notion of a standard library has to be created. This will allow code currently loaded through libraries as
+part of the program to shift towards being bundled with JavaScript implementations in the future.
 
-Pages and applications don't have to include shared libraries anymore which helps with download size and speed.
+> Disclaimer: This proposal covers adding a mechanism for enabling a standard library in JavaScript
+> implementations, it does not describe its contents. This is considered a tangential effort that would
+> be built and expanded upon in the future when a mechanism for accessing it is in place.
 
-### **Standardization**
+<!-- Availability & Standardization -->
+Having a standard library readily available at runtime means programs won't have to include the functionality
+in their libraries reducing the download and parse cost of the program. The functionality will also be
+standardized across implementations giving the developer guarentees about quality, behavior and speed.
 
-With the introduction of a standard library developers will get a well-defined API that does not have to be included with their pages or application. The functionality of the standard library will have gone through a standardization track and will have well-defined APIs and behavior.
-
-### **Extensibility**
-
-> FIXME This point needs work
-
-The standard library provides a great location for future extensions to the language and the toolkit available to developers. Because the functionality is added to a reserved space there is less chance of conflicts and all additions have gone through a standardization track. It also provides a space where features can be developed that are not bound to the prototype, a generic `len` or `map` function for example that works on multiple types.
-
-The standard library furthermore has versioning built into it to avoid conflicts.
-
-### **Fallback Mechanism**
-
-Importing features from the standard library has a fallback mechanism that can be used to override existing features if the version does not match or provide entire implementations when they are not available. The standard library can facilitate in feature detected to avoid cumbersome runtime checks (using error handling for example).
-
-### **Speed**
-
-Features need to be explicitly imported from the standard library when used, using the module syntax. This allows engines to only load parts of the standard library, setting up prototype chains when actually used. This allows engines to skip doing this at startup and only load parts that are actually used.
-
-> Question: Is this a weak argument? Engines already do lazy startup shenanigans
-
-Some standard library functions can be done in regular JavaScript, which is currently already the case. Moving functionality from external libraries (like Lodash or Ramda) allows them to tap into native code (C++) for heavy lifting and performance-conscious code.
-
-Pages and applications furthermore don't have to include shared libraries anymore which helps with download speed and parse speed.
+<!-- Extensibility -->
+Although JavaScript engines already have the notion of built-ins the standard library will use modules and the
+`import` syntax to access it. This mechanism should already be familiar to developers and will allow them to
+opt-in to parts they need. Using modules also allows more flexibility when designing the library contents and
+helps avoiding conflicts with global APIs.
 
 ## Requirements
 
