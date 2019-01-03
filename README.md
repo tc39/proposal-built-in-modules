@@ -18,11 +18,19 @@ library features as modules in the future.
 
 ## Scope
 
-The goal of this proposal is to define a mechanism for providing a more extensive standard library in JavaScript than is currently available.
+The goal of this proposal is to define a mechanism for enabling a more extensive standard library in
+JavaScript than is currently available. It focusses on infrastructure for and not the contents of this
+library.
 
-The library itself is tangential to this proposal, and would be built and expanded upon in later efforts. Such a library would only cover features which would be useful in JavaScript in general, not things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it probably isn't in scope.) See [#16](https://github.com/tc39/proposal-javascript-standard-library/issues/16) for discussion of the extent and contents of the library.
+The contents of the standard library is tangential to this proposal, and would be built and expanded upon in
+later efforts. Such a library would only cover features which would be useful in JavaScript in general, not
+things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser
+but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it
+probably isn't in scope.) See [#16](https://github.com/tc39/proposal-javascript-standard-library/issues/16)
+for discussion of the extent and contents of the library.
 
-This proposal would not change the behavior of any existing code or add any new syntax, except possibly the syntax for importing the standard library code.
+This proposal would not change the behavior of any existing code or add any new syntax, except possibly the
+syntax for importing the standard library code.
 
 ## Motivation
 
