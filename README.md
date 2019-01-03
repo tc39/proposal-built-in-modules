@@ -1,8 +1,8 @@
 # Standard Library Proposal
 
-**Status:** Stage 1
-
-This proposal describes adding a standard library to JavaScript that holds a set of APIs that can be used at runtime. It also describes how the standard library can be used by developers, what APIs could be part of the standard library and how it can be extended/evolved over time.
+Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript. With
+this infrastructure in place it will be possible to start iterating on standard
+library features as modules in the future.
 
 ## Scope
 
