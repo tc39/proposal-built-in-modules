@@ -10,8 +10,7 @@ library features as modules in the future.
   * [Scope](#scope)
   * [Motivation](#motivation)
   * [Proposed Solution](#proposed-solution)
-  * [Requirements](#requirements)
-  * [Strawman Solution](#strawman-solution)
+  * [Import Semantics](#import-semantics)
   * [Related Efforts](#related-efforts)
 
 </details>
@@ -67,68 +66,43 @@ Although JavaScript engines already have the notion of built-ins the standard li
 opt-in to parts they need. Using modules also allows more flexibility when designing the library contents and
 helps avoiding conflicts with global APIs.
 
-## Requirements
+## Import Semantics
 
-- A namespace must be reserved
-- Prototypes of imported objects are frozen
+To import modules from the standard library the engine has to be able to distinguish between standard library
+modules and other (user) modules. To allow the engine to do this standard library modules should use a prefix
+in the module identifier string. This has a preference over other alternatives because it is does not
+introduce new syntax for loading standard library modules to the `import` statement developers should already
+be familiar with.
 
-Still exploring:
+### Namespace
 
-- Some form of versioning must be supported to avoid conflicts
-- There must be a way to provide fallback implementation (polyfilling)
-  - For missing features
-  - For older implementations
+The `js::` prefix will be reserved as the namespace for the JavaScript language only and will be governed by
+TC39, making the standard library a true JavaScript standard library. This will allow the committee to work
+safely within this namespace when designing and developing the standard library.
 
-## Strawman Solution
+> There were other prefixes considered, please see the Appendices for more detail.
 
-### Protected Namespace
+By creating a namespaces specifically for the JavaScript standard library developers will know what to expect
+when importing from using the `js::` prefix across different implementations and can be assured the same
+modules are available across these implementations (not considering implementation constraints, vendor
+timelines or version differences).
 
-A protected namespace is reserved for the standard library that can be used to import functionality. Some examples could be:
+It is completely feasable that more namespaces are introduced that are goverened by other standards bodies or
+organizations but it is important that these namespaces stay independent of each other to avoid conflicts and
+contrain development within namespaces due to outside pollution.
 
-- `"std:foo:bar"`
-- `"std://foo/bar"`
-- `std.Foo.Bar`
+### Freezing Imports
 
-> Question: How does versioning fit into this?
+All imported objects and classes from the standard library will have their prototype frozen. This will prevent
+prototypes from imported objects to be modified outside of the module preventing prototype pollution.
 
-### Import Semantics
+In the past the committee had to make concessions to maintain web compatibility when adding new functionality
+to built-in objects. By freezing the prototype of standard library exports this is no longer possible allowing
+for more flexibility when designing and developing the standard library. Extending standard library classes
+and objects can still be done using the regular `extend` syntax to add new features in user land.
 
-Using a feature from the standard library can be done through a regular import from the protected namespace:
+> TODO: Describe how prototypes will be frozen
 
-```js
-import { Date } from "std:Date";
-import { Date } from "std:Date+2.1.6-alpha.1";
-
-
-const d = new Date(2018, 7, 1);
-```
-
-> Describe that the prototype is frozen, and what we mean by that
-
-It's our intent that modules in the standard library are pure (free from side-effects) as a policy, even though there are no limitations in the spec to enforce this.
-
-### Generic Functions
-
-The advantage of using regular imports is that it allows the development of more generic functions in the standard library. Examples that could be thought of (and exist in other languages like Python) could be:
-
-- `len`
-- `map`
-
-```js
-import { len, map } from "std:builtins";
-
-const ar = [1, 2, 3];
-const st = new Set([4, 5, 6, 7]);
-const mp = new Map([["e", 8], ["n", 9], ["z", 0], ["o", 1], ["t", 2]]);
-
-len(ar); // => 3
-len(st); // => 4
-len(mp); // => 5
-
-map(ar, (val, idx) => val * 2); // => Array {2, 4, 6}
-map(st, (val, idx) => val * 2); // => Set {8, 10, 12, 14}
-map(mp, (val, key) => val * 2); // => Map { e: 16, n: 18, z: 0, o: 2, t: 4 }
-```
 
 ### Polyfilling and Versioning
 
