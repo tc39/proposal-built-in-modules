@@ -4,6 +4,18 @@ Proposal for adding a mechanism for enabling a more extensive standard library i
 this infrastructure in place it will be possible to start iterating on standard
 library features as modules in the future.
 
+<details>
+  <summary><strong>Table of Contents</strong></summary>
+
+  * [Scope](#scope)
+  * [Motivation](#motivation)
+  * [Benefits](#benefits)
+  * [Requirements](#requirements)
+  * [Strawman Solution](#strawman-solution)
+  * [Related Efforts](#related-efforts)
+
+</details>
+
 ## Scope
 
 The goal of this proposal is to define a mechanism for providing a more extensive standard library in JavaScript than is currently available.
