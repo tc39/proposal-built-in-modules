@@ -1,4 +1,4 @@
-# Standard Library Proposal
+# JavaScript Standard Library Proposal
 
 Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript. With
 this infrastructure in place it will be possible to start iterating on standard
@@ -11,6 +11,7 @@ library features as modules in the future.
   * [Motivation](#motivation)
   * [Proposed Solution](#proposed-solution)
   * [Import Semantics](#import-semantics)
+  * [Module Resolution](#module-resolution)
   * [Related Efforts](#related-efforts)
 
 </details>
@@ -63,8 +64,11 @@ standardized across implementations giving the developer guarentees about qualit
 <!-- Extensibility -->
 Although JavaScript engines already have the notion of built-ins the standard library will use modules and the
 `import` syntax to access it. This mechanism should already be familiar to developers and will allow them to
-opt-in to parts they need. Using modules also allows more flexibility when designing the library contents and
-helps avoiding conflicts with global APIs.
+opt-in to functionality they need. Using modules also allows more flexibility when designing the library
+contents and helps avoiding conflicts with global APIs.
+
+Modules for the standard library should be able to be written in plain JavaScript for the most part but for
+hot pieces of code the engine could provide a native implementation.
 
 ## Import Semantics
 
@@ -94,25 +98,69 @@ contrain development within namespaces due to outside pollution.
 ### Freezing Imports
 
 All imported objects and classes from the standard library will have their prototype frozen. This will prevent
-prototypes from imported objects to be modified outside of the module preventing prototype pollution.
+prototypes from imported objects to be modified outside of the module causing prototype pollution.
 
 In the past the committee had to make concessions to maintain web compatibility when adding new functionality
 to built-in objects. By freezing the prototype of standard library exports this is no longer possible allowing
 for more flexibility when designing and developing the standard library. Extending standard library classes
-and objects can still be done using the regular `extend` syntax to add new features in user land.
+and objects can still be done using `extend` or `Object.create`.
 
 > TODO: Describe how prototypes will be frozen
 
+## Module Resolution
 
-### Polyfilling and Versioning
+The ECMAScript specification defines an _Abstract Operation_ for resolving and loading modules called
+[**HostResolveImportedModule**](https://www.ecma-international.org/ecma-262/#sec-hostresolveimportedmodule).
+This operation is handled by the embedding environment and has to result in a **ModuleRecord** or an
+**Error**.
 
-Acknowledge that this is something that needs to be incorporated.
+Because standard library modules are be bundled with the engine they have to be loaded in a different manner.
+The engine needs to be able to see resolution requests in order to participate in the resolution of standard
+library modules.
 
-> Question: How would this work exactly?
+### Chained Loading
+
+To allow the JavaScript engine to participate in module resolution the **HostResolveModuleIdentifier**
+_Abstract Operation_ should be changed to allow more than one resolver. Taking inspiration from the [Python
+import mechanism](https://docs.python.org/3/reference/import.html) there should be a chain of resolvers for
+resolving modules and a way to register them. This will allow the engine to have its own resolver alongside
+any resolvers registered by the embedder.
+
+Having more than one resolver is not very different than the current operation, each resolver in the chain
+still has the same responsibilities when trying to resolve a _ModuleIdentifier_:
+
+  * It must return an instance of ModuleRecord
+  * It must throw an error if a ModuleRecord cannot be created
+  * It must be idempotent for pair of (_referencingModule_, _specifier_)
+
+The difference is that the engine is responsible for maninging the chaining of resolvers together. When a
+resolver in the chain is unable to resolve a _ModuleRecord_ the _ModuleIdentifier_ should be passed to the
+next resolver in the chain. An error should only be surfaced when all resolvers in the chain were consulted
+and no _ModuleRecord_ was produced.
+
+Multiple resolvers in a chain allow the engine to register its own resolver for standard library modules but
+would also allow embedders to register multiple resolvers, e.g. for different purposes.
+
+
+### Polyfilling
+
+In order to support polyfilling new resolvers should always be registered at the head of the resolver chain
+and the standard library resolver used by the engine should always be the first resolver to register. This
+will always make the standard library resolver the last in the chain giving resolvers registered by the
+embedder first chance of handling imports from the standard library.
+
+For the web platform polyfilling could be done using the [Import Maps Proposal](). A resolver registered by
+the embedder (a web browser in this case) could check the import map to see if a standard library
+_ModuleIdentifier_ should be redirected to another implementation.
+
+> TODO: How does recursion work? With a special flag maybe?
+
 
 ## Related Efforts
 
-This topic has been talked about a lot in the past. There has been some recent activity around it as well:
+This subject has been talked about in the past and has related efforts:
 
-- <https://github.com/drufball/layered-apis>
 - <https://github.com/tc39/ecma262/issues/395>
+- <https://github.com/drufball/layered-apis>
+
+<!-- There should be an updated link to the Import Maps proposal -->
