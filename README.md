@@ -48,7 +48,7 @@ clients, but does incur a download and parse cost.
 
 ## Proposed Solution
 
-To enable developers to access common functionality at runtime that is provided by the JavaScript engine a
+To enable developers to access common functionality at runtime that is provided by the JavaScript engine the
 notion of a standard library has to be created. This will allow code currently loaded through libraries as
 part of the program to shift towards being bundled with JavaScript implementations in the future.
 
@@ -58,11 +58,11 @@ part of the program to shift towards being bundled with JavaScript implementatio
 
 <!-- Availability & Standardization -->
 Having a standard library readily available at runtime means programs won't have to include the functionality
-in their libraries reducing the download and parse cost of the program. The functionality will also be
+availabile in the standard library, reducing the download and parse cost of the program. The functionality will also be
 standardized across implementations giving the developer guarentees about quality, behavior and speed.
 
 <!-- Extensibility -->
-Although JavaScript engines already have the notion of built-ins the standard library will use modules and the
+Although JavaScript engines already have the notion of built-ins, the standard library will use modules and the
 `import` syntax to access it. This mechanism should already be familiar to developers and will allow them to
 opt-in to functionality they need. Using modules also allows more flexibility when designing the library
 contents and helps avoiding conflicts with global APIs.
@@ -74,9 +74,8 @@ hot pieces of code the engine could provide a native implementation.
 
 To import modules from the standard library the engine has to be able to distinguish between standard library
 modules and other (user) modules. To allow the engine to do this standard library modules should use a prefix
-in the module identifier string. This has a preference over other alternatives because it is does not
-introduce new syntax for loading standard library modules to the `import` statement developers should already
-be familiar with.
+in the module identifier string. This is prefered over other alternatives because it is does not introduce new
+syntax for loading standard library modules to the `import` statement developers should already be familiar with.
 
 ### Namespace
 
@@ -86,13 +85,13 @@ safely within this namespace when designing and developing the standard library.
 
 > There were other prefixes considered, please see the Appendices for more detail.
 
-By creating a namespaces specifically for the JavaScript standard library developers will know what to expect
+By creating a namespaces specifically for the JavaScript standard library, developers will know what to expect
 when importing from using the `js::` prefix across different implementations and can be assured the same
 modules are available across these implementations (not considering implementation constraints, vendor
 timelines or version differences).
 
-It is completely feasable that more namespaces are introduced that are goverened by other standards bodies or
-organizations but it is important that these namespaces stay independent of each other to avoid conflicts and
+It is completely feasable that more namespaces are introduced which are goverened by other standards bodies or
+organizations.  However it is important that these namespaces stay independent of each other to avoid conflicts and
 contrain development within namespaces due to outside pollution.
 
 ### Freezing Imports
@@ -101,8 +100,9 @@ All imported objects and classes from the standard library will have their proto
 prototypes from imported objects to be modified outside of the module causing prototype pollution.
 
 In the past the committee had to make concessions to maintain web compatibility when adding new functionality
-to built-in objects. By freezing the prototype of standard library exports this is no longer possible allowing
-for more flexibility when designing and developing the standard library. Extending standard library classes
+to built-in objects. By freezing the prototype of standard library exports, it will no longer be possible for 
+for third party code to modify or extending library code in a possibly incompatible way. This will allow for
+more flexibility when designing and developing the standard library. Extending standard library classes
 and objects can still be done using `extend` or `Object.create`.
 
 > TODO: Describe how prototypes will be frozen
@@ -122,8 +122,8 @@ library modules.
 
 To allow the JavaScript engine to participate in module resolution the **HostResolveModuleIdentifier**
 _Abstract Operation_ should be changed to allow more than one resolver. Taking inspiration from the [Python
-import mechanism](https://docs.python.org/3/reference/import.html) there should be a chain of resolvers for
-resolving modules and a way to register them. This will allow the engine to have its own resolver alongside
+import mechanism](https://docs.python.org/3/reference/import.html) there should be a chain of resolvers to
+resolve modules and a way to register resolvers. This will allow the engine to have its own resolver alongside
 any resolvers registered by the embedder.
 
 Having more than one resolver is not very different than the current operation, each resolver in the chain
@@ -134,11 +134,11 @@ still has the same responsibilities when trying to resolve a _ModuleIdentifier_:
   * It must be idempotent for pair of (_referencingModule_, _specifier_)
 
 The difference is that the engine is responsible for maninging the chaining of resolvers together. When a
-resolver in the chain is unable to resolve a _ModuleRecord_ the _ModuleIdentifier_ should be passed to the
+resolver in the chain is unable to resolve a _ModuleRecord_, the _ModuleIdentifier_ should be passed to the
 next resolver in the chain. An error should only be surfaced when all resolvers in the chain were consulted
 and no _ModuleRecord_ was produced.
 
-Multiple resolvers in a chain allow the engine to register its own resolver for standard library modules but
+Multiple resolvers in a chain allow the engine to register its own resolver for standard library modules, but
 would also allow embedders to register multiple resolvers, e.g. for different purposes.
 
 
@@ -146,12 +146,12 @@ would also allow embedders to register multiple resolvers, e.g. for different pu
 
 In order to support polyfilling new resolvers should always be registered at the head of the resolver chain
 and the standard library resolver used by the engine should always be the first resolver to register. This
-will always make the standard library resolver the last in the chain giving resolvers registered by the
+will always make the standard library resolver the last in the chain, giving resolvers registered by the
 embedder first chance of handling imports from the standard library.
 
-For the web platform polyfilling could be done using the [Import Maps Proposal](). A resolver registered by
-the embedder (a web browser in this case) could check the import map to see if a standard library
-_ModuleIdentifier_ should be redirected to another implementation.
+For the web platform polyfilling could be done using the [Import Maps Proposal](https://github.com/domenic/import-maps).
+A resolver registered by the embedder (a web browser in this case) could check the import map to see if a
+standard library _ModuleIdentifier_ should be redirected to another implementation.
 
 > TODO: How does recursion work? With a special flag maybe?
 
