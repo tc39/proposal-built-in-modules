@@ -101,9 +101,9 @@ prototypes from imported objects to be modified outside of the module causing pr
 
 In the past the committee had to make concessions to maintain web compatibility when adding new functionality
 to built-in objects. By freezing the prototype of standard library exports, it will no longer be possible for 
-for third party code to modify or extending library code in a possibly incompatible way. This will allow for
-more flexibility when designing and developing the standard library. Extending standard library classes
-and objects can still be done using `extend` or `Object.create`.
+third party code to modify or extending library code in a possibly incompatible way. This will allow for more
+flexibility when designing and developing the standard library. Extending standard library classes and objects
+can still be done using `extend` or `Object.create`.
 
 > TODO: Describe how prototypes will be frozen
 
