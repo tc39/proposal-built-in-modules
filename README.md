@@ -1,5 +1,10 @@
 # JavaScript Standard Library Proposal
 
+<div style="background-color: red; color: yellow; text-align: center;">
+    <h1 style="margin: 0; padding: 0; font-size: 500%">Work In Progress</h1>
+</div>
+<br />
+
 Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript. With
 this infrastructure in place it will be possible to start iterating on standard
 library features as modules in the future.
@@ -73,17 +78,19 @@ hot pieces of code the engine could provide a native implementation.
 ## Import Semantics
 
 To import modules from the standard library the engine has to be able to distinguish between standard library
-modules and other (user) modules. To allow the engine to do this standard library modules should use a prefix
-in the module identifier string. This is prefered over other alternatives because it is does not introduce new
-syntax for loading standard library modules to the `import` statement developers should already be familiar with.
+modules and other (user defined) modules. To allow the engine to do this standard library modules should use a
+prefix in the module identifier string. This is prefered over other alternatives because it is does not
+introduce new syntax for loading standard library modules and stays close to the `import` statement developers
+should already be familiar with.
 
 ### Namespace
 
 The `js::` prefix will be reserved as the namespace for the JavaScript language only and will be governed by
 TC39, making the standard library a true JavaScript standard library. This will allow the committee to work
-safely within this namespace when designing and developing the standard library.
+safely within this namespace when designing and developing the standard library over time.
 
-> There were other prefixes considered, please see the Appendices for more detail.
+> Alternatives for distinguishing standard modules are documented in [Appendix
+> A](#a-distinguishing-standard-library-modules).
 
 By creating a namespaces specifically for the JavaScript standard library, developers will know what to expect
 when importing from using the `js::` prefix across different implementations and can be assured the same
@@ -91,10 +98,11 @@ modules are available across these implementations (not considering implementati
 timelines or version differences).
 
 It is completely feasable that more namespaces are introduced which are goverened by other standards bodies or
-organizations.  However it is important that these namespaces stay independent of each other to avoid conflicts and
-contrain development within namespaces due to outside pollution.
+organizations.  However it is important that these namespaces stay independent of each other to avoid conflicts,
+hamper development within namespaces due to outside pollution or time constraints due to dependencies on other
+organizations.
 
-### Freezing Imports
+### Freezing Exports
 
 All imported objects and classes from the standard library will have their prototype frozen. This will prevent
 prototypes from imported objects to be modified outside of the module causing prototype pollution.
@@ -106,6 +114,11 @@ flexibility when designing and developing the standard library. Extending standa
 can still be done using `extend` or `Object.create`.
 
 > TODO: Describe how prototypes will be frozen
+
+> Question: How do we prevent leakage in through globals/primordials
+            We don't like the current solutions here
+
+> 
 
 ## Module Resolution
 
@@ -144,6 +157,14 @@ would also allow embedders to register multiple resolvers, e.g. for different pu
 
 ### Polyfilling
 
+There are three use cases that a polyfilling solution for the standard library should support:
+
+  * Add missing parts of the standard library
+  * Update incomplete implementations
+  * Patch broken broken parts of the standard library
+
+Poluyfilling is intended to cover these three use cases only.
+
 In order to support polyfilling new resolvers should always be registered at the head of the resolver chain
 and the standard library resolver used by the engine should always be the first resolver to register. This
 will always make the standard library resolver the last in the chain, giving resolvers registered by the
@@ -160,7 +181,139 @@ standard library _ModuleIdentifier_ should be redirected to another implementati
 
 This subject has been talked about in the past and has related efforts:
 
-- <https://github.com/tc39/ecma262/issues/395>
-- <https://github.com/drufball/layered-apis>
+- [https://github.com/tc39/ecma262/issues/395](https://github.com/tc39/ecma262/issues/395)
+- [https://github.com/domenic/import-maps](https://github.com/domenic/import-maps)
 
-<!-- There should be an updated link to the Import Maps proposal -->
+## Frequently Asked Questions
+
+> Start adding questions and answers here
+
+
+## Appendices
+
+### A. Distinguishing Standard Library Modules
+
+One of the requirements for the standard library is being able to distinguish when a module is user defined
+and when it should be loaded from the standard library. There are a lot of approaches to doing this and this
+section contains alternatives considered to the recommendation earlier in the proposal.
+
+> Important: The code samples and modules used in the examples are purely for illustrative purposes
+
+**Identifier Based**
+
+When importing a module the _ModuleSpecifier_ is required to be a string. Interpreting the contents of the
+string is currently left to the embedder effectively always making it a user defined module.
+
+To circumnavigate this and preserving the current behavior a different _ModuleSpecifier_ form using a special
+_Identifier_ could be used instead of a string literal:
+
+```js
+import { ... } from std.SomeStandardModule;
+```
+
+The `std` identifier is used to change the signature in a way that makes it possible for engines to detect
+this is a module that should be loaded from the standard library. The downside of using `std.________` is that
+it start to look like a global object that is also available in other contexts.
+
+It could also be possible to use specialized tokens in place of _Identifier_ prefix, for example similar to
+C/C++:
+
+```js
+import { ... } from <SomeStandardModule>;
+```
+
+While this makes importing standard library modules  distinctly different from user defined modules this is
+also one of the downsides. The syntax is different from the import syntax developers should already be
+familiar with and a dynamic variant would be difficult (gramar wise).
+
+Not using a prefix also has the downside of requiring everything from the standard library to live in the same
+space creating a new “global” namespace and preventing the use of multiple namespaces for different contexts.
+
+> Reference: [tc39/ecma262#395-comment-371865432](https://github.com/tc39/ecma262/issues/395#issuecomment-371865432)
+
+**Separate Keyword**
+
+When importing a module the _ModuleSpecifier_ is required to be a string. Interpreting the contents of the
+string is currently left to the embedder effectively always making it a user defined module.
+
+To circumnavigate this and preserving the current behavior a different keyword from `import` could be
+introduced specifically for importing modules from the standard library:
+
+```js
+include { ... } from <SomeStandardModule>;
+```
+
+> Important: The `include` keyword does not exist and is used for illustrative purposes only
+
+The seperate keyword is emphasised by combining it with an Identifier for the _ModuleSpecifier_. The separate
+keyword already distingishes the module enough so we can also safely use a string literal for the
+_ModuleSpecifier_:
+
+```js
+include { ... } from "SomeStandardModule";
+```
+
+While this makes importing standard library modules very distinctly different from user defined modules this
+is also one of its downsides. The syntax is different from the `import` syntax developers should already be
+familiar with and a dynamic variant of the keyword would also have to be created.
+
+Not using a prefix also has the downside of requiring everything from the standard library to live in the same
+space creating a new “global” namespace and preventing the use of multiple namespaces for different contexts.
+
+> Reference: [tc39/ecma262#395-comment-196917747](https://github.com/tc39/ecma262/issues/395#issuecomment-196917747)
+
+**URL Based**
+
+There is already support for importing modules from a URL in browsers like Safari using `import`
+statements inside of a `<script type="module" ... />`. The host portion of the URL could be used as a prefix
+for distinguishing standard library modules and fits very natural within the concept of URLs:
+
+```js
+import { ... } from "https://www.ecma-international.com/ecmascript/SomeStandardModule";
+```
+
+Using a URL with a domain for importing modules does not always make sense outside of a web context, for
+example in Node.js or embedded devices. It also requires ownership of the domain over a long period of time.
+A transfer of the domain might make the prefix useless or exclude a number of modules from being imported.
+
+As an alternative the URL protocol can also be leveraged as a differentiator and would still allow for
+multiple namespaces to exist. This format might also be more compatible with different environments:
+
+```js
+import { ... } from "js:SomeStandardModule";
+```
+
+Using a different protocol requires it to be registered with IANA but does alleviate the requirement for
+possesion of a domain. The above example is a valid URL so there is still the potential that it might break
+existing web pages or applications. A double colon should resolve this and is the chosen solution offered in
+the proposal.
+
+> Reference: [tc39/ecma262#395-comment-328528910](https://github.com/tc39/ecma262/issues/395#issuecomment-328528910)
+
+**NPM Style**
+
+The Node Package Manager (NPM for short) has an established format for importing packages published to a
+central registry. The format allows packages to be grouped under organizations and this could be leveraged as
+a prefix for the JavaScript standard library:
+
+```js
+import { ... } from "@std/SomeStandardModule";
+```
+
+While this format makes sense in environments where NPM is already used it is not as universal as a URL. The
+NPM style format also suffers some of the same downsides as a [**URL Based**](#url-based) approach.
+
+This format would require ownership over the organization on NPM (https://npmjs.com) and keeping multiple
+namespaces in mind would require all to do the same. But NPM is only the most commonly used registry, there
+might be other registries, possibly private ones that would be impossible to get ownership over a
+namespace. Using this format could exclude modules from being imported.
+
+The biggest downside utilizing this format is standard library modules looking the same as user defined
+modules which might cause confusion, for example where modules come from in a Node.js/NPM context. The two
+modules behave different and the same assumptions can't be applied to both.
+
+> Reference: [tc39/proposal-javascript-standard-library#16-comment-]()
+
+### B. Federated or Shared Namespace
+
+> TODO Write this section
