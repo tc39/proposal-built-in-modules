@@ -61,15 +61,14 @@ part of the program to shift towards being bundled with JavaScript implementatio
 > implementations, it does not describe its contents. This is considered a tangential effort that would
 > be built and expanded upon in the future when a mechanism for accessing it is in place.
 
-<!-- Availability & Standardization -->
 Having a standard library readily available at runtime means programs won't have to include the functionality
-availabile in the standard library, reducing the download and parse cost of the program. The functionality will also be
-standardized across implementations giving the developer guarentees about quality, behavior and speed.
+availabile in the standard library, reducing the download and parse cost of the program. The functionality
+will also be standardized across implementations giving the developer guarentees about quality, behavior and
+speed.
 
-<!-- Extensibility -->
-Although JavaScript engines already have the notion of built-ins, the standard library will use modules and the
-`import` syntax to access it. This mechanism should already be familiar to developers and will allow them to
-opt-in to functionality they need. Using modules also allows more flexibility when designing the library
+Although JavaScript engines already have the notion of built-ins, the standard library will use modules and
+the `import` syntax to access it. This mechanism should already be familiar to developers and will allow them
+to opt-in to functionality they need. Using modules also allows more flexibility when designing the library
 contents and helps avoiding conflicts with global APIs.
 
 Modules for the standard library should be able to be written in plain JavaScript for the most part but for
@@ -85,7 +84,7 @@ should already be familiar with.
 
 ### Namespace
 
-The `js::` prefix will be reserved as the namespace for the JavaScript language only and will be governed by
+The `js:` prefix will be reserved as the namespace for the JavaScript language only and will be governed by
 TC39, making the standard library a true JavaScript standard library. This will allow the committee to work
 safely within this namespace when designing and developing the standard library over time.
 
@@ -93,14 +92,17 @@ safely within this namespace when designing and developing the standard library 
 > A](#a-distinguishing-standard-library-modules).
 
 By creating a namespaces specifically for the JavaScript standard library, developers will know what to expect
-when importing from using the `js::` prefix across different implementations and can be assured the same
+when importing from using the `js:` prefix across different implementations and can be assured the same
 modules are available across these implementations (not considering implementation constraints, vendor
 timelines or version differences).
 
 It is completely feasable that more namespaces are introduced which are goverened by other standards bodies or
-organizations.  However it is important that these namespaces stay independent of each other to avoid conflicts,
-hamper development within namespaces due to outside pollution or time constraints due to dependencies on other
-organizations.
+organizations.  However it is important that these namespaces stay independent of each other to avoid
+conflicts, hamper development within namespaces due to outside pollution or time constraints due to
+dependencies on other organizations.
+
+The namespace used for the JavaScript standard library will be registered with IANA to prevent collisions in
+the future. Any other organization introducing a namespace prefix would be encouraged to do the same.
 
 ### Freezing Exports
 
@@ -275,18 +277,6 @@ import { ... } from "https://www.ecma-international.com/ecmascript/SomeStandardM
 Using a URL with a domain for importing modules does not always make sense outside of a web context, for
 example in Node.js or embedded devices. It also requires ownership of the domain over a long period of time.
 A transfer of the domain might make the prefix useless or exclude a number of modules from being imported.
-
-As an alternative the URL protocol can also be leveraged as a differentiator and would still allow for
-multiple namespaces to exist. This format might also be more compatible with different environments:
-
-```js
-import { ... } from "js:SomeStandardModule";
-```
-
-Using a different protocol requires it to be registered with IANA but does alleviate the requirement for
-possesion of a domain. The above example is a valid URL so there is still the potential that it might break
-existing web pages or applications. A double colon should resolve this and is the chosen solution offered in
-the proposal.
 
 > Reference: [tc39/ecma262#395-comment-328528910](https://github.com/tc39/ecma262/issues/395#issuecomment-328528910)
 
