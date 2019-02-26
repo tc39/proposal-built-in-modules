@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "repository": "tc39/proposal-javascript-standard-library",
+  "scripts": {
+    "spec": "ecmarkup spec.html out/index.html --js out/ecmarkup.js --css out/ecmarkup.css",
+    "watch": "ecmarkup --watch spec.html out/index.html --js out/ecmarkup.js --css out/ecmarkup.css"
+  },
+  "devDependencies": {
+    "ecmarkup": "^3.16.0"
+  }
+}
