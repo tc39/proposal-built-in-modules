@@ -45,13 +45,23 @@ copyright: false
   <emu-clause id="sec-createsyntheticmodule" aoid="CreateSyntheticModule">
     <h1>CreateSyntheticModule ( _exports_, _realm_ )</h1>
 
-    <p>The abstract operation CreateSyntheticModule creates a Synthetic Module Record based upon the given exported names and evaluation steps. It performs the following steps:</p>
+    <p>The abstract operation CreateSyntheticModule creates a Synthetic Module Record based upon the given exported names and values. It performs the following steps:</p>
 
     <emu-alg>
       1. Return Synthetic Module Record { [[Realm]]: _realm_, [[Environment]]: *undefined*, [[Namespace]]: *undefined*, [[HostDefined]]: *undefined*, [[Exports]]: _exports_ }.
     </emu-alg>
 
     <emu-note type="editor">It seems we could set up the environment either here or in Instantiate(). I've chosen to do so in Instantiate() for symmetry with Source Text Module Records, but I don't think there's any actual requirement in that regard.</emu-note>
+  </emu-clause>
+
+  <emu-clause id="sec-createsyntheticdefaultmodule" aoid="CreateSyntheticDefaultModule">
+    <h1>CreateSyntheticDefaultModule ( _exportValue_, _realm_ )</h1>
+
+    <p>The abstract operation CreateSyntheticDefaultModule creates a Synthetic Module Record based upon the given exported value. It performs the following steps:</p>
+
+    <emu-alg>
+      1. Return CreateSyntheticModule(&laquo; { [[Name]]: `"default"`, [[Value]]: _exportValue_ } &raquo;, the current Realm Record).
+    </emu-alg>
   </emu-clause>
 
   <emu-clause id="sec-smr-concrete-methods">
@@ -132,7 +142,7 @@ copyright: false
       <p>The following algorithm, given an object _object_, creates a Synthetic Module Record which default-exports the object. This might be useful, for example, for JSON or CSS modules.</p>
 
       <emu-alg>
-        1. Return CreateSyntheticModule(&laquo; { [[Name]]: `"default"`, [[Value]]: _object_ } &raquo;, the current Realm Record).
+        1. Return CreateSyntheticDefaultModule(_object_, the current Realm Record).
       </emu-alg>
     </emu-clause>
 
