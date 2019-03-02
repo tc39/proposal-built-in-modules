@@ -18,11 +18,11 @@ copyright: false
 <emu-clause id="sec-synthetic-module-records">
   <h1>Synthetic Module Records</h1>
 
-  <p>A <dfn>Synthetic Module Record</dfn> is used to represent information about a module that is defined by specifications. Its exports are derived from a pair of lists, of string keys and of ECMAScript values. The set of exported names is static, and determined at creation time (as an argument to CreateSyntheticModule), while the set of exported values can be changed over time using SetSyntheticModuleExport. It has no imports or dependencies.</p>
+  <p>A <dfn>Synthetic Module Record</dfn> is used to represent information about a module that is defined by specifications. Its exports are derived from a list of pairs of string keys and of ECMAScript values. The set of exported names is static, as are the values exported. It has no imports or dependencies.</p>
 
   <emu-note>A Synthetic Module Record could be used for defining a variety of module types: for example, built-in modules, or JSON modules, or CSS modules.</emu-note>
 
-  <p>In addition to the fields defined in <emu-xref href="#table-36"></emu-xref>, Synthetic Module Records have the additional fields listed in <emu-xref href="#table-synthetic-module-record-fields"></emu-xref>. Each of these fields is initially set in CreateSyntheticModule.</p>
+  <p>In addition to the fields defined in <emu-xref href="#table-36"></emu-xref>, Synthetic Module Records have an additional field listed in <emu-xref href="#table-synthetic-module-record-fields"></emu-xref>. This field is initially set in CreateSyntheticModule.</p>
 
   <emu-table id="table-synthetic-module-record-fields" caption="Additional Fields of Synthetic Module Records">
     <table>
@@ -32,8 +32,8 @@ copyright: false
         <th>Meaning
       <tbody>
         <tr>
-          <td>[[ExportNames]]
-          <td>List of String
+          <td>[[Exports]]
+          <td>List of Records of the form { [[Name]]: a string, [[Value]]: an ECMAScript value }
           <td>A List of all names that are exported.
         <tr>
           <td>[[EvaluationSteps]]
@@ -43,26 +43,15 @@ copyright: false
   </emu-table>
 
   <emu-clause id="sec-createsyntheticmodule" aoid="CreateSyntheticModule">
-    <h1>CreateSyntheticModule ( _exportNames_, _evaluationSteps_, _realm_, _hostDefined_ )</h1>
+    <h1>CreateSyntheticModule ( _exports_, _realm_ )</h1>
 
     <p>The abstract operation CreateSyntheticModule creates a Synthetic Module Record based upon the given exported names and evaluation steps. It performs the following steps:</p>
 
     <emu-alg>
-      1. Return Synthetic Module Record { [[Realm]]: _realm_, [[Environment]]: *undefined*, [[Namespace]]: *undefined*, [[HostDefined]]: _hostDefined_, [[ExportNames]]: _exportNames_, [[EvaluationSteps]]: _evaluationSteps_ }.
+      1. Return Synthetic Module Record { [[Realm]]: _realm_, [[Environment]]: *undefined*, [[Namespace]]: *undefined*, [[HostDefined]]: *undefined*, [[Exports]]: _exports_ }.
     </emu-alg>
 
     <emu-note type="editor">It seems we could set up the environment either here or in Instantiate(). I've chosen to do so in Instantiate() for symmetry with Source Text Module Records, but I don't think there's any actual requirement in that regard.</emu-note>
-  </emu-clause>
-
-  <emu-clause id="sec-setsyntheticmoduleexport" aoid="SetSyntheticModuleExport">
-    <h1>SetSyntheticModuleExport ( _module_, _exportName_, _exportValue_ )</h1>
-
-    <p>The abstract operation SetSyntheticModuleExport can be used to set or change the exported value for a pre-established export of a Synthetic Module Record. It performs the following steps:</p>
-
-    <emu-alg>
-      1. Let _envRec_ be _module_.[[Environment]]'s EnvironmentRecord.
-      1. Perform _envRec_.SetMutableBinding(_exportName_, _exportValue_, *true*).
-    </emu-alg>
   </emu-clause>
 
   <emu-clause id="sec-smr-concrete-methods">
@@ -80,7 +69,10 @@ copyright: false
 
       <emu-alg>
         1. Let _module_ be this Synthetic Module Record.
-        1. Return _module_.[[ExportNames]].
+        1. Let _list_ be a new, empty List.
+        1. For each _pair_ in _module_.[[Exports]],
+          1. Append _pair_.[[Name]] to _list_.
+        1. Return _list_.
       </emu-alg>
     </emu-clause>
 
@@ -92,7 +84,7 @@ copyright: false
 
       <emu-alg>
         1. Let _module_ be this Synthetic Module Record.
-        1. If _module_.[[ExportNames]] does not contain _exportName_, return null.
+        1. If _module_.[[Exports]] does not contain a Record _pair_ such that _pair_.[[Name]] is _exportName_, return *null*.
         1. Return ResolvedBinding Record { [[Module]]: _module_, [[BindingName]]: _exportName_ }.
       </emu-alg>
     </emu-clause>
@@ -110,9 +102,9 @@ copyright: false
         1. Let _env_ be NewModuleEnvironment(_realm_.[[GlobalEnv]]).
         1. Set _module_.[[Environment]] to _env_.
         1. Let _envRec_ be _env_'s EnvironmentRecord.
-        1. For each _exportName_ in _module_.[[ExportNames]],
-          1. Perform ! _envRec_.CreateMutableBinding(_exportName_, *false*).
-          1. Perform ! _envRec_.InitializeBinding(_exportName_, *undefined*).
+        1. For each _pair_ in _module_.[[Exports]],
+          1. Perform ! _envRec_.CreateImmutableBinding(_pair_.[[Name]], *false*).
+          1. Perform ! _envRec_.InitializeBinding(_pair_.[[Name]], _pair_.[[Value]]).
         1. Return *undefined*.
       </emu-alg>
     </emu-clause>
@@ -124,20 +116,7 @@ copyright: false
       <p>It performs the following steps:</p>
 
       <emu-alg>
-        1. Let _module_ be this Synthetic Module Record.
-        1. Let _moduleCxt_ be a new ECMAScript code execution context.
-        1. Set the Function of _moduleCxt_ to *null*.
-        1. Assert: _module_.[[Realm]] is not *undefined*.
-        1. Set the Realm of _moduleCxt_ to _module_.[[Realm]].
-        1. Set the ScriptOrModule of _moduleCxt_ to _module_.
-        1. Set the VariableEnvironment of _moduleCxt_ to _module_.[[Environment]].
-        1. Set the LexicalEnvironment of _moduleCxt_ to _module_.[[Environment]].
-        1. Suspend the currently running execution context.
-        1. Push _moduleCxt_ on to the execution context stack; _moduleCxt_ is now the running execution context.
-        1. Let _result_ be the result of performing ? _module_.[[EvaluationSteps]](_module_).
-        1. Suspend _moduleCxt_ and remove it from the execution context stack.
-        1. Resume the context that is now on the top of the execution context stack as the running execution context.
-        1. Return Completion(_result_).
+        1. Return *undefined*.
       </emu-alg>
     </emu-clause>
   </emu-clause>
@@ -147,24 +126,14 @@ copyright: false
 
     <p>This non-normative section shows how one could define a few different Synthetic Module Records.</p>
 
-    <emu-note type="editor">Although these seem somewhat verbose, that is largely because ECMAScript specification text doesn't generally allow "closures" where you would define an algorithm or set of steps inline. Host environment specification styles are different, and hosts could write their synthetic module creation more compactly and concisely by inlining instead of using separately-defined evaluation steps.</emu-note>
-
     <emu-clause id="example-smr-object-wrapper">
       <h1>A module wrapping a single object</h1>
 
       <p>The following algorithm, given an object _object_, creates a Synthetic Module Record which default-exports the object. This might be useful, for example, for JSON or CSS modules.</p>
 
       <emu-alg>
-        1. Return CreateSyntheticModule(&laquo; `"default"` &raquo;, ExampleObjectWrapperModuleEvaluation, the current Realm Record, _object_).
+        1. Return CreateSyntheticModule(&laquo; { [[Name]]: `"default"`, [[Value]]: _object_ } &raquo;, the current Realm Record).
       </emu-alg>
-
-      <emu-clause id="example-smr-object-wrapper-evaluation-steps" aoid="ExampleObjectWrapperModuleEvaluation">
-        <h1>ExampleObjectWrapperModuleEvaluation ( _module_ )</h1>
-
-        <emu-alg>
-          1. Perform SetSyntheticModuleExport(_module_, `"default"`, _module_.[[HostDefined]]).
-        </emu-alg>
-      </emu-clause>
     </emu-clause>
 
     <emu-clause id="example-smr-object-wrapper">
@@ -173,18 +142,10 @@ copyright: false
       <p>The following algorithm creates a Synthetic Module Record with a single export, `"add"`, which provides a built-in function object that adds its two arguments.</p>
 
       <emu-alg>
-        1. Return CreateSyntheticModule(&laquo; `"add"` &raquo;, ExampleAdderModuleEvaluation, the current Realm Record, *undefined*).
+        1. Let _adderSteps_ be the algorithm steps defined in <emu-xref href="#example-smr-adder-function-steps" title></emu-xref>.
+        1. Let _adderFunction_ be CreateBuiltinFunction(_adderSteps_).
+        1. Return CreateSyntheticModule(&laquo; { [[Name]]: `"add"`, [[Value]]: _adderFunction_ } &raquo;, the current Realm Record).
       </emu-alg>
-
-      <emu-clause id="example-smr-adder-evaluation-steps" aoid="ExampleAdderModuleEvaluation">
-        <h1>ExampleAdderModuleEvaluation ( _module_ )</h1>
-
-        <emu-alg>
-          1. Let _adderSteps_ be the algorithm steps defined in <emu-xref href="#example-smr-adder-function-steps" title></emu-xref>.
-          1. Let _adderFunction_ be CreateBuiltinFunction(_adderSteps_).
-          1. Perform SetSyntheticModuleExport(_module_, `"add"`, _adderFunction_).
-        </emu-alg>
-      </emu-clause>
 
       <emu-clause id="example-smr-adder-function-steps">
         <h1>Example Adder Functions</h1>
