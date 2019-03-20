@@ -1,10 +1,5 @@
 # JavaScript Standard Library Proposal
 
-<div style="background-color: red; color: yellow; text-align: center;">
-    <h1 style="margin: 0; padding: 0; font-size: 500%">Work In Progress</h1>
-</div>
-<br />
-
 Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript. With
 this infrastructure in place it will be possible to start iterating on standard
 library features as modules in the future.
@@ -121,42 +116,44 @@ freezing prototypes at the module boudary for standard library modules.
 
 ## Module Resolution
 
-The ECMAScript specification defines an _Abstract Operation_ for resolving and loading modules called
-[**HostResolveImportedModule**](https://www.ecma-international.org/ecma-262/#sec-hostresolveimportedmodule).
-This operation is handled by the embedding environment and has to result in a **ModuleRecord** or an
-**Error**.
+To allow the JavaScript engine to participate in module resolution and loading the
+**HostResolveModuleIdentifier** Abstract Operation should be changed to allow more than one resolver. The
+resolvers are arranged in a chain and consulted by the engine one by one to resolve a requested
+ModuleIdentifier. This mechanism is heavily inspired by [Pythons importing system for
+modules](https://docs.python.org/3/reference/import.html).
 
-Because standard library modules are be bundled with the engine they have to be loaded in a different manner.
-The engine needs to be able to see import requests in order to participate in the resolution of standard
-library modules.
+The implementation of the chain will be hidden inside the engine and will provide the same guarantees
+*HostResolveModuleIdentifier* currently does:
 
-### Chained Loading
+* It must return an instance of ModuleRecord
+* It must throw an error if a ModuleRecord cannot be created
+* It must be idempotent for pair of (ModuleIdentifier, ReferencingModule)
 
-To allow the JavaScript engine to participate in module resolution the **HostResolveModuleIdentifier**
-_Abstract Operation_ should be changed to allow more than one resolver. Taking inspiration from the [Python
-import mechanism](https://docs.python.org/3/reference/import.html) there should be a chain of resolvers to
-resolve modules and a way to register them. This will allow the engine to have its own resolver alongside
-any resolvers registered by the embedder.
+Importing is done in two phases: resolution and loading. Resolution is done through objects implementing the
+_ResolveModuleIdentifier_ operation and loading is done through objects implementing the
+_LoadModuleIdentifier_
+operation. Objects implementing both operations are referred to as importers.
 
-> Insert picture here
+![Module Resolution and Loading Chain](module-resolution-and-loading-chain.png)
 
-Having more than one resolver is not very different than the current operation, each resolver in the chain
-still has the same responsibilities when trying to resolve a _ModuleIdentifier_:
+Multiple importers can be registered with the engine and will be appended to the chain. The engine will always
+register the internal JavaScript Standard Library importer first to make sure it is at the front of the chain.
 
-  * It must return an instance of ModuleRecord
-  * It must throw an error if a ModuleRecord cannot be created
-  * It must be idempotent for pair of (_referencingModule_, _specifier_)
+During the resolution step (phase 1) importers perform the _ResolveModuleIdentifier_ operation in order of
+registration. This operation results in a _ModuleResolutionRecord_ that is passed along the chain and can be
+used by subsequent importers.
 
-The difference is that the engine is responsible for maninging the chaining of resolvers together. When a
-resolver in the chain is unable to resolve a _ModuleRecord_, the _ModuleIdentifier_ should be passed to the
-next resolver in the chain. An error should only be surfaced when all resolvers in the chain were consulted
-and no _ModuleRecord_ was produced.
-
-Multiple resolvers in a chain allow the engine to register its own resolver for standard library modules, but
-would also allow embedders to register multiple resolvers, e.g. for different purposes.
-
+After the resolution step the loading step (phase 2) is invoked. During this step the importers are visited in
+reverse order to perform the _LoadModuleIdentifier_ operation to try and load the requested _ModuleIdentifier_.
+The operation is passed the _ModuleResolutionRecords_ from the resolution step. When the _ModuleIdentifier_ can be
+loaded a full _ModuleRecord_ is returned and the chain is exited immediately. When no _ModuleRecord_ is produced
+the next importer is consulted until the chain is exhausted, resulting in a _ModuleNotFound_ error.
 
 ### Polyfilling
+
+During the loading step (phase 2) the chain is traversed in reverse order to allow for higher ranked (e.g.
+registered later) importers to override lower ranked importers. This will allow the host for example to
+override standard library modules and achieve polyfilling.
 
 There are three use cases that a polyfilling solution for the standard library should support:
 
@@ -164,18 +161,11 @@ There are three use cases that a polyfilling solution for the standard library s
   * Update incomplete implementations
   * Patch broken broken parts of the standard library
 
-Polyfilling is intended to cover these three use cases only.
-
-In order to support polyfilling new resolvers should always be registered at the head of the resolver chain
-and the standard library resolver used by the engine should always be the first resolver to register. This
-will always make the standard library resolver the last in the chain, giving resolvers registered by the
-embedder first chance of handling imports from the standard library.
+> Polyfilling is intended to cover these three use cases only.
 
 For the web platform polyfilling could be done using the [Import Maps Proposal](https://github.com/domenic/import-maps).
 A resolver registered by the embedder (a web browser in this case) could check the import map to see if a
 standard library _ModuleIdentifier_ should be redirected to another implementation.
-
-> TODO: How does recursion work? With a special flag maybe?
 
 
 ## Related Efforts
@@ -305,4 +295,4 @@ modules behave different and the same assumptions can't be applied to both.
 
 ### B. Federated or Shared Namespace
 
-> TODO Write this section
+> Coming Soon™
