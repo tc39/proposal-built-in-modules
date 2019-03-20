@@ -115,12 +115,9 @@ third party code to modify or extending library code in a possibly incompatible 
 flexibility when designing and developing the standard library. Extending standard library classes and objects
 can still be done using `extend` or `Object.create`.
 
-> TODO: Describe how prototypes will be frozen
-
-> Question: How do we prevent leakage in through globals/primordials
-            We don't like the current solutions here
-
-> 
+We can start of by cenventionally enforcing `Object.freeze` on exported Objects from standard library modules.
+If this turns out to be hard to check and enforce a separate proposal can be created to describe automatically
+freezing prototypes at the module boudary for standard library modules.
 
 ## Module Resolution
 
@@ -130,7 +127,7 @@ This operation is handled by the embedding environment and has to result in a **
 **Error**.
 
 Because standard library modules are be bundled with the engine they have to be loaded in a different manner.
-The engine needs to be able to see resolution requests in order to participate in the resolution of standard
+The engine needs to be able to see import requests in order to participate in the resolution of standard
 library modules.
 
 ### Chained Loading
@@ -138,8 +135,10 @@ library modules.
 To allow the JavaScript engine to participate in module resolution the **HostResolveModuleIdentifier**
 _Abstract Operation_ should be changed to allow more than one resolver. Taking inspiration from the [Python
 import mechanism](https://docs.python.org/3/reference/import.html) there should be a chain of resolvers to
-resolve modules and a way to register resolvers. This will allow the engine to have its own resolver alongside
+resolve modules and a way to register them. This will allow the engine to have its own resolver alongside
 any resolvers registered by the embedder.
+
+> Insert picture here
 
 Having more than one resolver is not very different than the current operation, each resolver in the chain
 still has the same responsibilities when trying to resolve a _ModuleIdentifier_:
@@ -165,7 +164,7 @@ There are three use cases that a polyfilling solution for the standard library s
   * Update incomplete implementations
   * Patch broken broken parts of the standard library
 
-Poluyfilling is intended to cover these three use cases only.
+Polyfilling is intended to cover these three use cases only.
 
 In order to support polyfilling new resolvers should always be registered at the head of the resolver chain
 and the standard library resolver used by the engine should always be the first resolver to register. This
