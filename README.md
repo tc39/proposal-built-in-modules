@@ -177,8 +177,7 @@ This subject has been talked about in the past and has related efforts:
 
 ## Frequently Asked Questions
 
-> Start adding questions and answers here
-
+> Coming Soon™
 
 ## Appendices
 
