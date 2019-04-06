@@ -101,7 +101,7 @@ the future. Any other organization introducing a namespace prefix would be encou
 
 ### Freezing Exports
 
-All imported objects and classes from the standard library will have their prototype frozen. This will prevent
+All exported objects and classes from the standard library will have their prototype frozen. This will prevent
 prototypes from imported objects to be modified outside of the module causing prototype pollution.
 
 In the past the committee had to make concessions to maintain web compatibility when adding new functionality
