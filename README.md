@@ -57,7 +57,7 @@ part of the program to shift towards being bundled with JavaScript implementatio
 > be built and expanded upon in the future when a mechanism for accessing it is in place.
 
 Having a standard library readily available at runtime means programs won't have to include the functionality
-availabile in the standard library, reducing the download and parse cost of the program. The functionality
+available in the standard library, reducing the download and parse cost of the program. The functionality
 will also be standardized across implementations giving the developer guarentees about quality, behavior and
 speed.
 
