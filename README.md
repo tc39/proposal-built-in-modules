@@ -295,3 +295,13 @@ modules behave different and the same assumptions can't be applied to both.
 ### B. Federated or Shared Namespace
 
 > Coming Soon™
+
+## Specification
+
+- [Ecmarkup source](https://github.com/tc39/proposal-javascript-standard-library/blob/master/spec.html)
+- [HTML version](https://tc39.github.io/proposal-javascript-standard-library/)
+
+## Implementations
+
+- none yet
+
