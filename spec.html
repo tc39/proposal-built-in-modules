@@ -410,21 +410,21 @@ copyright: false
         1. Let _resolution_ be this Builtin Module Resolution Record.
         1. Assert: _resolution_.[[Status]] is  `"resolving "` or `"resolved"`.
         1. If _ModuleIdentifier_ does not begin with `"js:"`, then
-           1. Return
+           1. Return.
         1. Let _localModuleIdentifier_ be a substring of _ModuleIdentifier_ from the index after `"js:"`.
-        1. Let _globalEnvironment_ be the global environment of _ReferencingModule.[[Environment]]
-        1. If _globalEnvironment_.[[BuiltinModuleMap]] contains _localModuleIdentifier_, then
+        1. Let _globalEnvironment_ be the global environment of _ReferencingModule_.[[Environment]].
+        1. If _globalEnvironment_.[[BuiltinModuleMap]] contains an entry _e_ such that _e_.[[Identifier]] is _localModuleIdentifier_, then
           1. Set _resolution_.[[Status]] to `"resolved"`.
-        1. Let _loader_ be _globalEnvironment_[[Loader]]
-        1. Push _loader_ on the front of _resolution_.[[ResolvingLoaders]]
-        1. Return
+        1. Let _loader_ be _globalEnvironment_.[[Loader]].
+        1. Push _loader_ on the front of _resolution_.[[ResolvingLoaders]].
+        1. Return.
       </emu-alg>
     </emu-clause>
 
     <emu-clause id="sec-load-module-identifier">
       <h1>LoadModuleIdentifier ( _ModuleIdentifier_, _ReferencingModule_ )</h1>
 
-      <p>The LoadModuleIdentifier concrete method implements the module loading part of the Builtin Module import process..</p>
+      <p>The LoadModuleIdentifier concrete method implements the module loading part of the Builtin Module import process.</p>
       <p>Each Loader needs to provide this method to participate in the Builtin Module resolution and loading process.  The abstract method described here is what is required for the ECMAScript language implementation.  Hosts that provide additional Loaders must provide a ResolveModuleIdentifier method each Loader.</p>
       <p>If the Loader is able to successfully load the _module_, it ResolveModuleIdentifier set module's [[Status]] to `"resolved"` and adds the current _Loader_ to the front of the [[ResolvingLoaders]] list.</p>
 
@@ -434,15 +434,15 @@ copyright: false
         1. Let _resolution_ be this Builtin Module Resolution Record.
         1. Assert: _resolution_.[[Status]] is  `"loading"`.
         1. Assert: _resolution_.[[ResolvingLoaders]] has at least one element.
-        1. Let _loader_ be the first element of _resolution_.[[ResolvingLoaders]]
-        1. If _loader_ &ne; _globalEnvironment_[[Loader]]
-          1. Return _undefined_
+        1. Let _loader_ be the first element of _resolution_.[[ResolvingLoaders]].
+        1. If _loader_ &ne; _globalEnvironment_.[[Loader]], then
+          1. Return _undefined_.
         1. Assert: _ModuleIdentifier_ begins with `"js:"`.
         1. Let _localModuleIdentifier_ be a substring of _ModuleIdentifier_ from the index after `"js:"`.
-        1. Let _globalEnvironment_ be the global environment of _ReferencingModule.[[Environment]]
-        1. Let _moduleMap_ be _globalEnvironment_.[[BuiltinModuleMap]]
-        1. Assert: _moduleMap_ contains _localModuleIdentifier_.
-        1. Let _moduleRecord_ be _moduleMap_.[[_localModuleIdentifier_]].[[ModuleRecord]]
+        1. Let _globalEnvironment_ be the global environment of _ReferencingModule.[[Environment]].
+        1. Let _moduleMap_ be _globalEnvironment_.[[BuiltinModuleMap]].
+        1. Assert: _moduleMap_ contains an entry _e_ such that _e_.[[Identifer]] is _localModuleIdentifier_.
+        1. Let _moduleRecord_ be _e_.[[ModuleRecord]].
         1. Perform _moduleRecord_.Instantiate().
         1. Return _moduleRecord_.Evaluate().
       </emu-alg>
@@ -460,16 +460,11 @@ copyright: false
         <p>This abstract operation performs the following steps.</p>
         <emu-alg>
           1. Let _resolution_ be Builtin Module Record { [[Status]]: `"uninitialized"`, [[ResolvingLoaders]]: `"[ ]"` }
-          1. Set _loaders_ be the host defined list of Loaders.
-          1. Let _loaderCount_ be the number of elements in _loaders_.
-          1. Let _i_ be 0
-          1. Repeat, while _i_ &lt _loaderCount_
-            1. Perform _loaders_.[[_i_]].ResolveModuleIdentifier ( _ModuleIdentifier_, _ReferencingModule_ ).
-            1. Let _i_ = _i_ + 1
-          1. Let _i_ be _loaderCount_
-          1. Repeat, while _i_ &ne; 0
-            1. Let _i_ = _i_ - 1
-            1. Let _loadResult_ = _loaderCount__loaders_.[[_i_]].LoadModuleIdentifier ( _ModuleIdentifier_, _ReferencingModule_ ).
+          1. Let _loaders_ be the host-defined List of Loaders.
+          1. For each element _loader_ in _loaders_, in List order, do
+            1. Perform _loader_.ResolveModuleIdentifier( _ModuleIdentifier_, _ReferencingModule_ ).
+          1. For each element _loader_ in _loaders_, in reverse List order, do
+            1. Let _loadResult_ be _loader_.LoadModuleIdentifier( _ModuleIdentifier_, _ReferencingModule_ ).
             1. If _loadResult &ne; _undefined_, then
               1. Return _loadResult_.
           1. Return _undefined_
