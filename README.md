@@ -58,7 +58,7 @@ part of the program to shift towards being bundled with JavaScript implementatio
 
 Having a standard library readily available at runtime means programs won't have to include the functionality
 availabile in the standard library, reducing the download and parse cost of the program. The functionality
-will also be standardized across implementations giving the developer guarentees about quality, behavior and
+will also be standardized across implementations giving the developer guarantees about quality, behavior and
 speed.
 
 Although JavaScript engines already have the notion of built-ins, the standard library will use modules and
@@ -73,7 +73,7 @@ hot pieces of code the engine could provide a native implementation.
 
 To import modules from the standard library the engine has to be able to distinguish between standard library
 modules and other (user defined) modules. To allow the engine to do this standard library modules should use a
-prefix in the module identifier string. This is prefered over other alternatives because it is does not
+prefix in the module identifier string. This is preferred over other alternatives because it is does not
 introduce new syntax for loading standard library modules and stays close to the `import` statement developers
 should already be familiar with.
 
@@ -91,7 +91,7 @@ when importing from using the `js:` prefix across different implementations and 
 modules are available across these implementations (not considering implementation constraints, vendor
 timelines or version differences).
 
-It is completely feasable that more namespaces are introduced which are goverened by other standards bodies or
+It is completely feasible that more namespaces are introduced which are governed by other standards bodies or
 organizations.  However it is important that these namespaces stay independent of each other to avoid
 conflicts, hamper development within namespaces due to outside pollution or time constraints due to
 dependencies on other organizations.
@@ -105,14 +105,14 @@ All exported objects and classes from the standard library will have their proto
 prototypes from imported objects to be modified outside of the module causing prototype pollution.
 
 In the past the committee had to make concessions to maintain web compatibility when adding new functionality
-to built-in objects. By freezing the prototype of standard library exports, it will no longer be possible for 
-third party code to modify or extending library code in a possibly incompatible way. This will allow for more
+to built-in objects. By freezing the prototype of standard library exports, it will no longer be possible for
+third party code to modify or extend library code in a possibly incompatible way. This will allow for more
 flexibility when designing and developing the standard library. Extending standard library classes and objects
 can still be done using `extend` or `Object.create`.
 
-We can start of by cenventionally enforcing `Object.freeze` on exported Objects from standard library modules.
-If this turns out to be hard to check and enforce a separate proposal can be created to describe automatically
-freezing prototypes at the module boudary for standard library modules.
+We can start off by conventionally enforcing `Object.freeze` on exported Objects from standard library
+modules. If this turns out to be hard to check and enforce a separate proposal can be created to describe
+automatically freezing prototypes at the module boundary for standard library modules.
 
 ## Module Resolution
 
@@ -159,7 +159,7 @@ There are three use cases that a polyfilling solution for the standard library s
 
   * Add missing parts of the standard library
   * Update incomplete implementations
-  * Patch broken broken parts of the standard library
+  * Patch broken parts of the standard library
 
 > Polyfilling is intended to cover these three use cases only.
 
@@ -214,7 +214,7 @@ import { ... } from <SomeStandardModule>;
 
 While this makes importing standard library modules  distinctly different from user defined modules this is
 also one of the downsides. The syntax is different from the import syntax developers should already be
-familiar with and a dynamic variant would be difficult (gramar wise).
+familiar with and a dynamic variant would be difficult (grammar wise).
 
 Not using a prefix also has the downside of requiring everything from the standard library to live in the same
 space creating a new “global” namespace and preventing the use of multiple namespaces for different contexts.
@@ -235,8 +235,8 @@ include { ... } from <SomeStandardModule>;
 
 > Important: The `include` keyword does not exist and is used for illustrative purposes only
 
-The seperate keyword is emphasised by combining it with an Identifier for the _ModuleSpecifier_. The separate
-keyword already distingishes the module enough so we can also safely use a string literal for the
+The separate keyword is emphasised by combining it with an Identifier for the _ModuleSpecifier_. The separate
+keyword already distinguishes the module enough so we can also safely use a string literal for the
 _ModuleSpecifier_:
 
 ```js
@@ -288,7 +288,7 @@ namespace. Using this format could exclude modules from being imported.
 
 The biggest downside utilizing this format is standard library modules looking the same as user defined
 modules which might cause confusion, for example where modules come from in a Node.js/NPM context. The two
-modules behave different and the same assumptions can't be applied to both.
+modules behave differently and the same assumptions can't be applied to both.
 
 > Reference: [tc39/proposal-javascript-standard-library#16-comment-]()
 
