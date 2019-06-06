@@ -137,7 +137,7 @@ operation. Objects implementing both operations are referred to as importers.
 ![Module Resolution and Loading Chain](module-resolution-and-loading-chain.png)
 
 Multiple importers can be registered with the engine and will be appended to the chain. The engine will always
-register the internal JavaScript Standard Library importer first to make sure it is at the front of the chain.
+register the internal JavaScript standard library importer first to make sure it is at the front of the chain.
 
 During the resolution step (phase 1) importers perform the _ResolveModuleIdentifier_ operation in order of
 registration. This operation results in a _ModuleResolutionRecord_ that is passed along the chain and can be
