@@ -247,9 +247,6 @@ While this makes importing standard library modules very distinctly different fr
 is also one of its downsides. The syntax is different from the `import` syntax developers should already be
 familiar with and a dynamic variant of the keyword would also have to be created.
 
-Not using a prefix also has the downside of requiring everything from the standard library to live in the same
-space creating a new “global” namespace and preventing the use of multiple namespaces for different contexts.
-
 > Reference: [tc39/ecma262#395-comment-196917747](https://github.com/tc39/ecma262/issues/395#issuecomment-196917747)
 
 **URL Based**
