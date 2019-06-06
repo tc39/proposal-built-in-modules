@@ -92,7 +92,7 @@ modules are available across these implementations (not considering implementati
 timelines or version differences).
 
 It is completely feasible that more namespaces are introduced which are governed by other standards bodies or
-organizations.  However it is important that these namespaces stay independent of each other to avoid
+organizations. However it is important that these namespaces stay independent of each other to avoid
 conflicts, hamper development within namespaces due to outside pollution or time constraints due to
 dependencies on other organizations.
 
@@ -212,7 +212,7 @@ C/C++:
 import { ... } from <SomeStandardModule>;
 ```
 
-While this makes importing standard library modules  distinctly different from user defined modules this is
+While this makes importing standard library modules distinctly different from user defined modules this is
 also one of the downsides. The syntax is different from the import syntax developers should already be
 familiar with and a dynamic variant would be difficult (grammar wise).
 
