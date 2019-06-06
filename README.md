@@ -203,7 +203,7 @@ import { ... } from std.SomeStandardModule;
 
 The `std` identifier is used to change the signature in a way that makes it possible for engines to detect
 this is a module that should be loaded from the standard library. The downside of using `std.________` is that
-it start to look like a global object that is also available in other contexts.
+it looks like a global object that is also available in other contexts.
 
 It could also be possible to use specialized tokens in place of _Identifier_ prefix, for example similar to
 C/C++:
