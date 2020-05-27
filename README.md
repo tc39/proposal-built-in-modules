@@ -1,8 +1,8 @@
-# JavaScript Standard Library Proposal
+# Built In Modules Proposal (aka JavaScript Standard Library)
 
-Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript. With
-this infrastructure in place it will be possible to start iterating on standard
-library features as modules in the future.
+Proposal for adding a mechanism for enabling a more extensive standard library in JavaScript 
+via a collection of built in modules. With this infrastructure in place it will be possible
+to start iterating on standard library features as additional modules.
 
 <details>
   <summary><strong>Table of Contents</strong></summary>
@@ -13,58 +13,73 @@ library features as modules in the future.
   * [Import Semantics](#import-semantics)
   * [Module Resolution](#module-resolution)
   * [Related Efforts](#related-efforts)
+  * [Frequently Asked Questions](#frequently-asked-questions)
+  * [Appendices](#appendices)
+  * [Specification](specification)
+  * [Implementations](#implementations)
 
 </details>
 
 ## Scope
 
 The goal of this proposal is to define a mechanism for enabling a more extensive standard library in
-JavaScript than is currently available. This proposal would not change the behavior of any existing code or
-add any new syntax, except possibly the syntax for importing the standard library code.
+JavaScript than what is available now.  Currently it is the case if new properties are added to the
+language, they are added someplace in the global object.  
+
+This proposal would not change the behavior of any existing code or add any new syntax, except possibly
+syntax needed for importing the standard library code.  There likely will be new properties and methods
+added to enable this feature.
 
 The contents of the standard library is tangential to this proposal, and would be built and expanded upon in
 later efforts. Such a library would only cover features which would be useful in JavaScript in general, not
-things which are tied to the web platform. (A good heuristic: if something would make sense on a web browser
+things which are tied to the web platform.  Host environments built on JavaScript could provide their own
+library components.  (A good heuristic: if something would make sense on a web browser
 but not in node or on [embedded devices](https://www.moddable.com/) or [robots](http://johnny-five.io/), it
-probably isn't in scope.) See [#16](https://github.com/tc39/proposal-javascript-standard-library/issues/16)
+probably isn't in scope.) See [#16](https://github.com/tc39/proposal-built-in-modules/issues/16)
 for discussion of the extent and contents of the library.
-
 
 ## Motivation
 
-Most programming languages have core language features (syntax, operators, primitives etc.) and also
-include a standard library with common functionality. Developers are able to use this in their programs
+Most programming languages have core language features (syntax, operators, primitives etc.) along with a 
+standard library of commonly used functionality. Developers are able to use this library in their programs
 immediately because the library is bundled with the runtime.
 
-The JavaScript language does not have a standard library resulting in common functionality being developed
-into libraries that are included with JavaScript programs. Because these libraries need to be included in every
-program instead of being provided by the runtime these programs are bigger with users paying the cost of
-downloading and parsing the extra bits. These libraries are also harder to cache between programs.
+The JavaScript language does not have a standard library.
+As a result new functionality is added to the global object, or developers find and adopt libraries that
+they bundle with the rest of their application.
+Because these libraries need to be included in every program instead of being provided by the runtime,
+the code size of applications grow, with users paying the cost of downloading and parsing the common library components.
+This can increase downloading times and makes it nearly impossible for JavaScript engines to cache the common code.
 
-JavaScript programs run on a variety of clients with different runtime implementations and versions. Libraries
-have to account for these different environments by including code that is not required or even run on some
-clients, but does incur a download and parse cost.
-
+JavaScript programs run on a variety of clients with different runtime implementations and versions.
+It is quite likely that the bundled library code needs to account for different host environments,
+thus increasing code size.
+Library code bundled with the JavaScript engine could be optimizied for the target host environment.
 
 ## Proposed Solution
 
-To enable developers to access common functionality at runtime that is provided by the JavaScript engine the
-notion of a standard library has to be created. This will allow code currently loaded through libraries as
-part of the program to shift towards being bundled with JavaScript implementations in the future.
+To enable developers to access common functionality provided by the JavaScript engine we propose creating
+modules built into the host.
+This will allow library code bundled with the program to shift towards being available on the host JavaScript
+implementations.
 
 > Disclaimer: This proposal covers adding a mechanism for enabling a standard library in JavaScript
 > implementations, it does not describe its contents. This is considered a tangential effort that would
 > be built and expanded upon in the future when a mechanism for accessing it is in place.
 
 Having a standard library readily available at runtime means programs won't have to include the functionality
-availabile in the standard library, reducing the download and parse cost of the program. The functionality
-will also be standardized across implementations giving the developer guarentees about quality, behavior and
+available in the standard library, reducing the download and startup cost of the program.
+The functionality will also be standardized across implementations giving developer consistency in quality, behavior and
 speed.
+For some JavaScript engines, built in modules will allow them to reduce application memory footprint
 
-Although JavaScript engines already have the notion of built-ins, the standard library will use modules and
-the `import` syntax to access it. This mechanism should already be familiar to developers and will allow them
-to opt-in to functionality they need. Using modules also allows more flexibility when designing the library
-contents and helps avoiding conflicts with global APIs.
+Although JavaScript engines already has the notion of a common library through the global object,
+the standard library components can be accessed using the current asynchronous `import()` API.
+Module scripts can also access built in library components using the `import` syntax.
+Traditional script code will be able to access these same standard library components through
+a new synchronous API, `importNow()`.
+Most of these mechanism should already be familiar to developers, allowing them to opt-in to
+this built in library functionality with little effort.
 
 Modules for the standard library should be able to be written in plain JavaScript for the most part but for
 hot pieces of code the engine could provide a native implementation.
@@ -72,7 +87,7 @@ hot pieces of code the engine could provide a native implementation.
 ## Import Semantics
 
 To import modules from the standard library the engine has to be able to distinguish between standard library
-modules and other (user defined) modules. To allow the engine to do this standard library modules should use a
+modules and other (user defined) modules. To allow the engine to do this standard library modules will use a
 prefix in the module identifier string. This is prefered over other alternatives because it is does not
 introduce new syntax for loading standard library modules and stays close to the `import` statement developers
 should already be familiar with.
@@ -110,9 +125,11 @@ third party code to modify or extending library code in a possibly incompatible 
 flexibility when designing and developing the standard library. Extending standard library classes and objects
 can still be done using `extend` or `Object.create`.
 
-We can start of by cenventionally enforcing `Object.freeze` on exported Objects from standard library modules.
+We can start off by conventionally enforcing `Object.freeze` on exported Objects from standard library modules.
 If this turns out to be hard to check and enforce a separate proposal can be created to describe automatically
 freezing prototypes at the module boudary for standard library modules.
+
+*Note, the current direction is to freeze module contents thus requiring shimming code to wrap module classes and objects.  Given some discussion around this point, it may be dropped from the proposal before built in modulesa re added to the standard.*
 
 ## Module Resolution
 
@@ -149,21 +166,23 @@ The operation is passed the _ModuleResolutionRecords_ from the resolution step. 
 loaded a full _ModuleRecord_ is returned and the chain is exited immediately. When no _ModuleRecord_ is produced
 the next importer is consulted until the chain is exhausted, resulting in a _ModuleNotFound_ error.
 
-### Polyfilling
+### Shimming / Polyfilling
 
 During the loading step (phase 2) the chain is traversed in reverse order to allow for higher ranked (e.g.
-registered later) importers to override lower ranked importers. This will allow the host for example to
-override standard library modules and achieve polyfilling.
+registered later) importers to possibly override lower ranked importers. This will allow the host for example to
+override standard library modules and achieve shimming / polyfilling.
+
+Alternatively, provisions are made for code to import a built-in module, shim it and update the host module table to point at the shimmed version.  This can be do repeatively so that shims / polyfills can be layored on top of each other.
 
 There are three use cases that a polyfilling solution for the standard library should support:
 
   * Add missing parts of the standard library
   * Update incomplete implementations
-  * Patch broken broken parts of the standard library
+  * Redact parts of a library component.
 
 > Polyfilling is intended to cover these three use cases only.
 
-For the web platform polyfilling could be done using the [Import Maps Proposal](https://github.com/domenic/import-maps).
+For the web platform polyfilling could be done using the [Import Maps Proposal](https://github.com/WICG/import-maps).
 A resolver registered by the embedder (a web browser in this case) could check the import map to see if a
 standard library _ModuleIdentifier_ should be redirected to another implementation.
 
@@ -173,7 +192,7 @@ standard library _ModuleIdentifier_ should be redirected to another implementati
 This subject has been talked about in the past and has related efforts:
 
 - [https://github.com/tc39/ecma262/issues/395](https://github.com/tc39/ecma262/issues/395)
-- [https://github.com/domenic/import-maps](https://github.com/domenic/import-maps)
+- [https://github.com/WICG/import-maps](https://github.com/WICG/import-maps)
 
 ## Frequently Asked Questions
 
@@ -292,13 +311,9 @@ modules behave different and the same assumptions can't be applied to both.
 
 > Reference: [tc39/proposal-javascript-standard-library#16-comment-]()
 
-### B. Federated or Shared Namespace
-
-> Coming Soon™
-
 ## Specification
 
-- [Ecmarkup source](https://github.com/tc39/proposal-javascript-standard-library/blob/master/spec.html)
+- [Ecmarkup source](https://github.com/tc39/proposal-built-in-modules/blob/master/spec.html)
 - [HTML version](https://tc39.github.io/proposal-javascript-standard-library/)
 
 ## Implementations
