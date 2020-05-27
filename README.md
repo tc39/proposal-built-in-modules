@@ -15,7 +15,7 @@ to start iterating on standard library features as additional modules.
   * [Related Efforts](#related-efforts)
   * [Frequently Asked Questions](#frequently-asked-questions)
   * [Appendices](#appendices)
-  * [Specification](specification)
+  * [Specification](#specification)
   * [Implementations](#implementations)
 
 </details>
