@@ -314,7 +314,7 @@ modules behave different and the same assumptions can't be applied to both.
 ## Specification
 
 - [Ecmarkup source](https://github.com/tc39/proposal-built-in-modules/blob/master/spec.html)
-- [HTML version](https://tc39.github.io/proposal-javascript-standard-library/)
+- [HTML version](https://tc39.es/proposal-built-in-modules/)
 
 ## Implementations
 
