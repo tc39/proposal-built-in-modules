@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en-GB-oxendict"><head>
+<meta charset="utf-8">
+<link rel="icon" href="img/favicon.ico">
+<link href="ecmarkup.css" rel="stylesheet">
+<script src="ecmarkup.js"></script>
+<script type="application/json" id="menu-search-biblio">[{"type":"clause","id":"sec-intro","aoid":null,"title":"Builtin Modules","titleHTML":"Builtin Modules","number":"","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Builtin Modules"},{"type":"clause","id":"sec-scope","aoid":null,"title":"Scope","titleHTML":"Scope","number":"1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Scope"},{"type":"clause","id":"sec-scripts","aoid":null,"title":"Scripts","titleHTML":"Scripts","number":"2.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Scripts"},{"type":"production","id":"prod-Module","name":"Module","referencingIds":[],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Module"},{"type":"production","id":"prod-ModuleBody","name":"ModuleBody","referencingIds":["_ref_138"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ModuleBody"},{"type":"production","id":"prod-ModuleItemList","name":"ModuleItemList","referencingIds":["_ref_139","_ref_141","_ref_148","_ref_149","_ref_150","_ref_152","_ref_154","_ref_155"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ModuleItemList"},{"type":"production","id":"prod-ModuleItem","name":"ModuleItem","referencingIds":["_ref_140","_ref_142","_ref_151","_ref_153"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ModuleItem"},{"type":"term","term":"Module Record","refId":"sec-abstract-module-records","referencingIds":[],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Module Record"},{"type":"table","id":"table-module-record-fields","node":{},"number":1,"caption":"Table 1: Module Record Fields","referencingIds":["_ref_0","_ref_2"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 1: Module Record Fields"},{"type":"table","id":"table-abstract-methods-of-module-records","node":{},"number":2,"caption":"Table 2: Abstract Methods of Module Records","referencingIds":["_ref_1"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 2: Abstract Methods of Module Records"},{"type":"term","term":"ResolvedBinding Record","refId":"sec-abstract-module-records","referencingIds":["_ref_31","_ref_94"],"id":"resolvedbinding-record","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ResolvedBinding Record"},{"type":"clause","id":"sec-abstract-module-records","aoid":null,"title":"Abstract Module Records","titleHTML":"Abstract Module Records","number":"2.2.1.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_11","_ref_12","_ref_21","_ref_23","_ref_26","_ref_29","_ref_35","_ref_39","_ref_55","_ref_57","_ref_59","_ref_60","_ref_62","_ref_65","_ref_66","_ref_67","_ref_68","_ref_69","_ref_70","_ref_71","_ref_72","_ref_73","_ref_74","_ref_85","_ref_93","_ref_118","_ref_119"],"key":"Abstract Module Records"},{"type":"term","term":"Synthetic Module Record","refId":"sec-synthetic-module-records","referencingIds":[],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Synthetic Module Record"},{"type":"table","id":"table-synthetic-module-record-fields","node":{},"number":3,"caption":"Table 3: Additional Fields of Synthetic Module Records","referencingIds":["_ref_3"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 3: Additional Fields of Synthetic Module Records"},{"type":"op","aoid":"CreateSyntheticModule","refId":"sec-createsyntheticmodule","location":"","referencingIds":[],"key":"CreateSyntheticModule"},{"type":"clause","id":"sec-createsyntheticmodule","aoid":"CreateSyntheticModule","title":"CreateSyntheticModule ( exportNames, evaluationSteps, realm, hostDefined )","titleHTML":"CreateSyntheticModule ( <var>exportNames</var>, <var>evaluationSteps</var>, <var>realm</var>, <var>hostDefined</var> )","number":"2.2.1.2.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_13","_ref_15","_ref_45","_ref_49","_ref_124"],"key":"CreateSyntheticModule ( exportNames, evaluationSteps, realm, hostDefined )"},{"type":"clause","id":"sec-smr-freeze","aoid":null,"title":"Freeze ( )","titleHTML":"Freeze ( )","number":"2.2.1.2.2.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Freeze ( )"},{"type":"clause","id":"sec-smr-getexportednames","aoid":null,"title":"GetExportedNames ( exportStarSet )","titleHTML":"GetExportedNames ( <var>exportStarSet</var> )","number":"2.2.1.2.2.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"GetExportedNames ( exportStarSet )"},{"type":"clause","id":"sec-smr-resolveexport","aoid":null,"title":"ResolveExport ( exportName, resolveSet )","titleHTML":"ResolveExport ( <var>exportName</var>, <var>resolveSet</var> )","number":"2.2.1.2.2.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"ResolveExport ( exportName, resolveSet )"},{"type":"op","aoid":"SetModuleExport","refId":"sec-smr-setmoduleexport","location":"","referencingIds":[],"key":"SetModuleExport"},{"type":"clause","id":"sec-smr-setmoduleexport","aoid":"SetModuleExport","title":"SetModuleExport ( exportName, exportValue )","titleHTML":"SetModuleExport ( <var>exportName</var>, <var>exportValue</var> )","number":"2.2.1.2.2.4","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_14","_ref_17","_ref_47","_ref_52"],"key":"SetModuleExport ( exportName, exportValue )"},{"type":"clause","id":"sec-smr-instantiate","aoid":null,"title":"Instantiate ( )","titleHTML":"Instantiate ( )","number":"2.2.1.2.2.5","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Instantiate ( )"},{"type":"clause","id":"sec-smr-Evaluate","aoid":null,"title":"Evaluate ( )","titleHTML":"Evaluate ( )","number":"2.2.1.2.2.6","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Evaluate ( )"},{"type":"clause","id":"sec-smr-concrete-methods","aoid":null,"title":"Concrete Methods","titleHTML":"Concrete Methods","number":"2.2.1.2.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Concrete Methods"},{"type":"op","aoid":"ExampleObjectWrapperModuleEvaluation","refId":"example-smr-object-wrapper-evaluation-steps","location":"","referencingIds":[],"key":"ExampleObjectWrapperModuleEvaluation"},{"type":"clause","id":"example-smr-object-wrapper-evaluation-steps","aoid":"ExampleObjectWrapperModuleEvaluation","title":"ExampleObjectWrapperModuleEvaluation ( module )","titleHTML":"ExampleObjectWrapperModuleEvaluation ( <var>module</var> )","number":"2.2.1.2.3.1.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_46"],"key":"ExampleObjectWrapperModuleEvaluation ( module )"},{"type":"clause","id":"example-smr-object-wrapper","aoid":null,"title":"A module wrapping a single object","titleHTML":"A module wrapping a single object","number":"2.2.1.2.3.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"A module wrapping a single object"},{"type":"op","aoid":"ExampleAdderModuleEvaluation","refId":"example-smr-adder-evaluation-steps","location":"","referencingIds":[],"key":"ExampleAdderModuleEvaluation"},{"type":"clause","id":"example-smr-adder-evaluation-steps","aoid":"ExampleAdderModuleEvaluation","title":"ExampleAdderModuleEvaluation ( module )","titleHTML":"ExampleAdderModuleEvaluation ( <var>module</var> )","number":"2.2.1.2.3.2.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_50"],"key":"ExampleAdderModuleEvaluation ( module )"},{"type":"clause","id":"example-smr-adder-function-steps","aoid":null,"title":"Example Adder Functions","titleHTML":"Example Adder Functions","number":"2.2.1.2.3.2.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_4"],"key":"Example Adder Functions"},{"type":"clause","id":"example-smr-object-addition","aoid":null,"title":"A \"builtin module\" for addition","titleHTML":"A \"builtin module\" for addition","number":"2.2.1.2.3.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"A \"builtin module\" for addition"},{"type":"clause","id":"example-synthetic-module-record","aoid":null,"title":"Example uses of Synthetic Module Records","titleHTML":"Example uses of Synthetic Module Records","number":"2.2.1.2.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Example uses of Synthetic Module Records"},{"type":"clause","id":"sec-synthetic-module-records","aoid":null,"title":"Synthetic Module Records","titleHTML":"Synthetic Module Records","number":"2.2.1.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_16","_ref_18","_ref_19","_ref_20","_ref_22","_ref_24","_ref_25","_ref_27","_ref_28","_ref_30","_ref_32","_ref_33","_ref_34","_ref_36","_ref_38","_ref_40","_ref_44","_ref_48","_ref_58","_ref_61","_ref_64"],"key":"Synthetic Module Records"},{"type":"op","aoid":"HostHasBuiltinModule","refId":"sec-hosthasbuiltinmodule","location":"","referencingIds":[],"key":"HostHasBuiltinModule"},{"type":"clause","id":"sec-hosthasbuiltinmodule","aoid":"HostHasBuiltinModule","title":"Runtime Semantics: HostHasBuiltinModule ( referencingScriptOrModule, specifier )","titleHTML":"Runtime Semantics: HostHasBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )","number":"2.2.1.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_122","_ref_127","_ref_133"],"key":"Runtime Semantics: HostHasBuiltinModule ( referencingScriptOrModule, specifier )"},{"type":"op","aoid":"HostCreateBuiltinModule","refId":"sec-hostcreatebuiltinmodule","location":"","referencingIds":[],"key":"HostCreateBuiltinModule"},{"type":"clause","id":"sec-hostcreatebuiltinmodule","aoid":"HostCreateBuiltinModule","title":"Runtime Semantics: HostCreateBuiltinModule ( referencingScriptOrModule, specifier, module )","titleHTML":"Runtime Semantics: HostCreateBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>module</var> )","number":"2.2.1.4","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_125","_ref_134"],"key":"Runtime Semantics: HostCreateBuiltinModule ( referencingScriptOrModule, specifier, module )"},{"type":"op","aoid":"HostResolveBuiltinModule","refId":"sec-hostresolvebuiltinmodule","location":"","referencingIds":[],"key":"HostResolveBuiltinModule"},{"type":"clause","id":"sec-hostresolvebuiltinmodule","aoid":"HostResolveBuiltinModule","title":"Runtime Semantics: HostResolveBuiltinModule ( referencingScriptOrModule, specifier )","titleHTML":"Runtime Semantics: HostResolveBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )","number":"2.2.1.5","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_56","_ref_123","_ref_126","_ref_128","_ref_135"],"key":"Runtime Semantics: HostResolveBuiltinModule ( referencingScriptOrModule, specifier )"},{"type":"op","aoid":"HostResolveImportedModule","refId":"sec-hostresolveimportedmodule","location":"","referencingIds":[],"key":"HostResolveImportedModule"},{"type":"clause","id":"sec-hostresolveimportedmodule","aoid":"HostResolveImportedModule","title":"Runtime Semantics: HostResolveImportedModule ( referencingScriptOrModule, specifier )","titleHTML":"Runtime Semantics: HostResolveImportedModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )","number":"2.2.1.6","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_63","_ref_78","_ref_80","_ref_84","_ref_86","_ref_89","_ref_96","_ref_136"],"key":"Runtime Semantics: HostResolveImportedModule ( referencingScriptOrModule, specifier )"},{"type":"op","aoid":"HostImportModuleDynamically","refId":"sec-hostimportmoduledynamically","location":"","referencingIds":[],"key":"HostImportModuleDynamically"},{"type":"clause","id":"sec-hostimportmoduledynamically","aoid":"HostImportModuleDynamically","title":"Runtime Semantics: HostImportModuleDynamically ( referencingScriptOrModule, specifier, promiseCapability )","titleHTML":"Runtime Semantics: HostImportModuleDynamically ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var> )","number":"2.2.1.7","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_87","_ref_131"],"key":"Runtime Semantics: HostImportModuleDynamically ( referencingScriptOrModule, specifier, promiseCapability )"},{"type":"op","aoid":"FinishDynamicImport","refId":"sec-finishdynamicimport","location":"","referencingIds":[],"key":"FinishDynamicImport"},{"type":"clause","id":"sec-finishdynamicimport","aoid":"FinishDynamicImport","title":"Runtime Semantics: FinishDynamicImport ( referencingScriptOrModule, specifier, promiseCapability, completion )","titleHTML":"Runtime Semantics: FinishDynamicImport ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var>, <var>completion</var> )","number":"2.2.1.8","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_75","_ref_76","_ref_79","_ref_81","_ref_82","_ref_83"],"key":"Runtime Semantics: FinishDynamicImport ( referencingScriptOrModule, specifier, promiseCapability, completion )"},{"type":"op","aoid":"GetModuleNamespace","refId":"sec-getmodulenamespace","location":"","referencingIds":[],"key":"GetModuleNamespace"},{"type":"clause","id":"sec-getmodulenamespace","aoid":"GetModuleNamespace","title":"Runtime Semantics: GetModuleNamespace ( module )","titleHTML":"Runtime Semantics: GetModuleNamespace ( <var>module</var> )","number":"2.2.1.9","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_90","_ref_129"],"key":"Runtime Semantics: GetModuleNamespace ( module )"},{"type":"clause","id":"sec-module-semantics-runtime-semantics-evaluation","aoid":null,"title":"Runtime Semantics: Evaluation","titleHTML":"Runtime Semantics: Evaluation","number":"2.2.1.10","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Runtime Semantics: Evaluation"},{"type":"clause","id":"sec-module-semantics","aoid":null,"title":"Module Semantics","titleHTML":"Module Semantics","number":"2.2.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Module Semantics"},{"type":"clause","id":"sec-modules","aoid":null,"title":"Modules","titleHTML":"Modules","number":"2.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Modules"},{"type":"clause","id":"sec-ecmascript-language-scripts-and-modules","aoid":null,"title":"ECMAScript Language: Scripts and Modules","titleHTML":"ECMAScript Language: Scripts and Modules","number":"2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"ECMAScript Language: Scripts and Modules"},{"type":"production","id":"prod-ModuleSpecifier","name":"ModuleSpecifier","referencingIds":["_ref_143","_ref_144","_ref_145","_ref_146","_ref_147","_ref_160"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ModuleSpecifier"},{"type":"production","id":"prod-ModuleDomain","name":"ModuleDomain","referencingIds":["_ref_156","_ref_157","_ref_158","_ref_159"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"ModuleDomain"},{"type":"term","term":"Builtin Module Record","refId":"sec-standard-library-imports","referencingIds":["_ref_104","_ref_105","_ref_106","_ref_120"],"id":"builtin-module-record","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Builtin Module Record"},{"type":"table","id":"table-41","node":{},"number":4,"caption":"Table 4: Builtin Module Record Fields","referencingIds":["_ref_5"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 4: Builtin Module Record Fields"},{"type":"term","term":"Loader","refId":"sec-standard-library-imports","referencingIds":["_ref_107","_ref_108","_ref_110","_ref_111","_ref_112","_ref_114","_ref_115","_ref_116"],"id":"builtin-module-loader","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Loader"},{"type":"table","id":"table-42","node":{},"number":5,"caption":"Table 5: Additional Global Environment Fields","referencingIds":["_ref_7"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 5: Additional Global Environment Fields"},{"type":"term","term":"Builtin Module Resolution Record","refId":"sec-standard-library-imports","referencingIds":["_ref_109","_ref_113","_ref_117"],"id":"builtin-module-resolution-record","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Builtin Module Resolution Record"},{"type":"table","id":"table-builtin-module-record-fields","node":{},"number":6,"caption":"Table 6: Builtin Module Resolution Record","referencingIds":["_ref_8"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 6: Builtin Module Resolution Record"},{"type":"table","id":"table-builtin-module-resolution-methods","node":{},"number":7,"caption":"Table 7: Builtin Module Resolution Methods","referencingIds":["_ref_6","_ref_9"],"namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","key":"Table 7: Builtin Module Resolution Methods"},{"type":"clause","id":"sec-resolve-module-identifier","aoid":null,"title":"ResolveModuleIdentifier ( ModuleIdentifier, ReferencingModule )","titleHTML":"ResolveModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )","number":"3.1.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"ResolveModuleIdentifier ( ModuleIdentifier, ReferencingModule )"},{"type":"clause","id":"sec-load-module-identifier","aoid":null,"title":"LoadModuleIdentifier ( ModuleIdentifier, ReferencingModule )","titleHTML":"LoadModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )","number":"3.1.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"LoadModuleIdentifier ( ModuleIdentifier, ReferencingModule )"},{"type":"clause","id":"sec-import-builtin-module","aoid":null,"title":"ImportBuiltinModule ( ModuleIdentifier, ReferencingModule )","titleHTML":"ImportBuiltinModule ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )","number":"3.1.3.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"ImportBuiltinModule ( ModuleIdentifier, ReferencingModule )"},{"type":"clause","id":"sec-import","aoid":null,"title":"Importing","titleHTML":"Importing","number":"3.1.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Importing"},{"type":"clause","id":"sec-standard-library-imports","aoid":null,"title":"Standard Library Imports","titleHTML":"Standard Library Imports","number":"3.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Standard Library Imports"},{"type":"clause","id":"sec-ecmascript-language-standard-library","aoid":null,"title":"ECMAScript Language: Standard Library","titleHTML":"ECMAScript Language: Standard Library","number":"3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"ECMAScript Language: Standard Library"},{"type":"clause","id":"sec-atomics","aoid":null,"title":"Atomics","titleHTML":"Atomics","number":"4.1.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Atomics"},{"type":"clause","id":"sec-json","aoid":null,"title":"JSON","titleHTML":"JSON","number":"4.1.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"JSON"},{"type":"clause","id":"sec-math","aoid":null,"title":"Math","titleHTML":"Math","number":"4.1.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Math"},{"type":"clause","id":"sec-reflect","aoid":null,"title":"Reflect","titleHTML":"Reflect","number":"4.1.4","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Reflect"},{"type":"clause","id":"sec-builtinModules","aoid":null,"title":"BuiltinModule","titleHTML":"BuiltinModule","number":"4.1.5","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule"},{"type":"clause","id":"sec-other-properties-of-the-global-object","aoid":null,"title":"Other Properties of the Global Object","titleHTML":"Other Properties of the Global Object","number":"4.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Other Properties of the Global Object"},{"type":"clause","id":"sec-global-object","aoid":null,"title":"The Global Object","titleHTML":"The Global Object","number":"4","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_121"],"key":"The Global Object"},{"type":"clause","id":"sec-builtin-module.export","aoid":null,"title":"BuiltinModule.export ( moduleSpecifier, exports )","titleHTML":"BuiltinModule.export ( <var>moduleSpecifier</var>, <var>exports</var> )","number":"5.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule.export ( moduleSpecifier, exports )"},{"type":"clause","id":"sec-builtin-module.freezeModule","aoid":null,"title":"BuiltinModule.freezeModule ( moduleSpecifier )","titleHTML":"BuiltinModule.freezeModule ( <var>moduleSpecifier</var> )","number":"5.2","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule.freezeModule ( moduleSpecifier )"},{"type":"clause","id":"sec-builtin-module.freezeAllModules","aoid":null,"title":"BuiltinModule.freezeAllModules ( )","titleHTML":"BuiltinModule.freezeAllModules ( )","number":"5.3","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule.freezeAllModules ( )"},{"type":"clause","id":"sec-builtin-module.hasModule","aoid":null,"title":"BuiltinModule.hasModule ( moduleSpecifier )","titleHTML":"BuiltinModule.hasModule ( <var>moduleSpecifier</var> )","number":"5.4","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule.hasModule ( moduleSpecifier )"},{"type":"clause","id":"sec-builtin-module.import","aoid":null,"title":"BuiltinModule.import ( moduleSpecifier )","titleHTML":"BuiltinModule.import ( <var>moduleSpecifier</var> )","number":"5.5","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"BuiltinModule.import ( moduleSpecifier )"},{"type":"clause","id":"sec-builtin_module-object","aoid":null,"title":"BuiltinModule Object","titleHTML":"BuiltinModule Object","number":"5","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":["_ref_10"],"key":"BuiltinModule Object"},{"type":"clause","id":"sec-host-hooks-summary","aoid":null,"title":"Host Hooks","titleHTML":"Host Hooks","number":"A.1","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Host Hooks"},{"type":"clause","id":"sec-host-layering-points","aoid":null,"title":"Host Layering Points","titleHTML":"Host Layering Points","number":"A","namespace":"https://github.com/tc39/proposal-built-in-modules","location":"","referencingIds":[],"key":"Host Layering Points"}]</script></head>
+<body><div id="menu-toggle">☰</div><div id="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins</div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-intro" title="Builtin Modules">Builtin Modules</a></li><li><span class="item-toggle-none"></span><a href="#sec-scope" title="Scope"><span class="secnum">1</span> Scope</a></li><li><span class="item-toggle">◢</span><a href="#sec-ecmascript-language-scripts-and-modules" title="ECMAScript Language: Scripts and Modules"><span class="secnum">2</span> ECMAScript Language: Scripts and Modules</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-scripts" title="Scripts"><span class="secnum">2.1</span> Scripts</a></li><li><span class="item-toggle">◢</span><a href="#sec-modules" title="Modules"><span class="secnum">2.2</span> Modules</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#sec-module-semantics" title="Module Semantics"><span class="secnum">2.2.1</span> Module Semantics</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-abstract-module-records" title="Abstract Module Records"><span class="secnum">2.2.1.1</span> Abstract Module Records</a></li><li><span class="item-toggle">◢</span><a href="#sec-synthetic-module-records" title="Synthetic Module Records"><span class="secnum">2.2.1.2</span> Synthetic Module Records</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-createsyntheticmodule" title="CreateSyntheticModule ( exportNames, evaluationSteps, realm, hostDefined )"><span class="secnum">2.2.1.2.1</span> CreateSyntheticModule ( <var>exportNames</var>, <var>evaluationSteps</var>, <var>realm</var>, <var>hostDefined</var> )</a></li><li><span class="item-toggle">◢</span><a href="#sec-smr-concrete-methods" title="Concrete Methods"><span class="secnum">2.2.1.2.2</span> Concrete Methods</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-smr-freeze" title="Freeze ( )"><span class="secnum">2.2.1.2.2.1</span> Freeze ( )</a></li><li><span class="item-toggle-none"></span><a href="#sec-smr-getexportednames" title="GetExportedNames ( exportStarSet )"><span class="secnum">2.2.1.2.2.2</span> GetExportedNames ( <var>exportStarSet</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-smr-resolveexport" title="ResolveExport ( exportName, resolveSet )"><span class="secnum">2.2.1.2.2.3</span> ResolveExport ( <var>exportName</var>, <var>resolveSet</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-smr-setmoduleexport" title="SetModuleExport ( exportName, exportValue )"><span class="secnum">2.2.1.2.2.4</span> SetModuleExport ( <var>exportName</var>, <var>exportValue</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-smr-instantiate" title="Instantiate ( )"><span class="secnum">2.2.1.2.2.5</span> Instantiate ( )</a></li><li><span class="item-toggle-none"></span><a href="#sec-smr-Evaluate" title="Evaluate ( )"><span class="secnum">2.2.1.2.2.6</span> Evaluate ( )</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#example-synthetic-module-record" title="Example uses of Synthetic Module Records"><span class="secnum">2.2.1.2.3</span> Example uses of Synthetic Module Records</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#example-smr-object-wrapper" title="A module wrapping a single object"><span class="secnum">2.2.1.2.3.1</span> A module wrapping a single object</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#example-smr-object-wrapper-evaluation-steps" title="ExampleObjectWrapperModuleEvaluation ( module )"><span class="secnum">2.2.1.2.3.1.1</span> ExampleObjectWrapperModuleEvaluation ( <var>module</var> )</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#example-smr-object-addition" title="A " builtin="" module"="" for="" addition"=""><span class="secnum">2.2.1.2.3.2</span> A "builtin module" for addition</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#example-smr-adder-evaluation-steps" title="ExampleAdderModuleEvaluation ( module )"><span class="secnum">2.2.1.2.3.2.1</span> ExampleAdderModuleEvaluation ( <var>module</var> )</a></li><li><span class="item-toggle-none"></span><a href="#example-smr-adder-function-steps" title="Example Adder Functions"><span class="secnum">2.2.1.2.3.2.2</span> Example Adder Functions</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-hosthasbuiltinmodule" title="Runtime Semantics: HostHasBuiltinModule ( referencingScriptOrModule, specifier )"><span class="secnum">2.2.1.3</span> RS: HostHasBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-hostcreatebuiltinmodule" title="Runtime Semantics: HostCreateBuiltinModule ( referencingScriptOrModule, specifier, module )"><span class="secnum">2.2.1.4</span> RS: HostCreateBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>module</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-hostresolvebuiltinmodule" title="Runtime Semantics: HostResolveBuiltinModule ( referencingScriptOrModule, specifier )"><span class="secnum">2.2.1.5</span> RS: HostResolveBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-hostresolveimportedmodule" title="Runtime Semantics: HostResolveImportedModule ( referencingScriptOrModule, specifier )"><span class="secnum">2.2.1.6</span> RS: HostResolveImportedModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-hostimportmoduledynamically" title="Runtime Semantics: HostImportModuleDynamically ( referencingScriptOrModule, specifier, promiseCapability )"><span class="secnum">2.2.1.7</span> RS: HostImportModuleDynamically ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-finishdynamicimport" title="Runtime Semantics: FinishDynamicImport ( referencingScriptOrModule, specifier, promiseCapability, completion )"><span class="secnum">2.2.1.8</span> RS: FinishDynamicImport ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var>, <var>completion</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-getmodulenamespace" title="Runtime Semantics: GetModuleNamespace ( module )"><span class="secnum">2.2.1.9</span> RS: GetModuleNamespace ( <var>module</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-module-semantics-runtime-semantics-evaluation" title="Runtime Semantics: Evaluation"><span class="secnum">2.2.1.10</span> RS: Evaluation</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle">◢</span><a href="#sec-ecmascript-language-standard-library" title="ECMAScript Language: Standard Library"><span class="secnum">3</span> ECMAScript Language: Standard Library</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#sec-standard-library-imports" title="Standard Library Imports"><span class="secnum">3.1</span> Standard Library Imports</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-resolve-module-identifier" title="ResolveModuleIdentifier ( ModuleIdentifier, ReferencingModule )"><span class="secnum">3.1.1</span> ResolveModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-load-module-identifier" title="LoadModuleIdentifier ( ModuleIdentifier, ReferencingModule )"><span class="secnum">3.1.2</span> LoadModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</a></li><li><span class="item-toggle">◢</span><a href="#sec-import" title="Importing"><span class="secnum">3.1.3</span> Importing</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-import-builtin-module" title="ImportBuiltinModule ( ModuleIdentifier, ReferencingModule )"><span class="secnum">3.1.3.1</span> ImportBuiltinModule ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle">◢</span><a href="#sec-global-object" title="The Global Object"><span class="secnum">4</span> The Global Object</a><ol class="toc"><li><span class="item-toggle">◢</span><a href="#sec-other-properties-of-the-global-object" title="Other Properties of the Global Object"><span class="secnum">4.1</span> Other Properties of the Global Object</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-atomics" title="Atomics"><span class="secnum">4.1.1</span> Atomics</a></li><li><span class="item-toggle-none"></span><a href="#sec-json" title="JSON"><span class="secnum">4.1.2</span> JSON</a></li><li><span class="item-toggle-none"></span><a href="#sec-math" title="Math"><span class="secnum">4.1.3</span> Math</a></li><li><span class="item-toggle-none"></span><a href="#sec-reflect" title="Reflect"><span class="secnum">4.1.4</span> Reflect</a></li><li><span class="item-toggle-none"></span><a href="#sec-builtinModules" title="BuiltinModule"><span class="secnum">4.1.5</span> BuiltinModule</a></li></ol></li></ol></li><li><span class="item-toggle">◢</span><a href="#sec-builtin_module-object" title="BuiltinModule Object"><span class="secnum">5</span> BuiltinModule Object</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-builtin-module.export" title="BuiltinModule.export ( moduleSpecifier, exports )"><span class="secnum">5.1</span> BuiltinModule.export ( <var>moduleSpecifier</var>, <var>exports</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-builtin-module.freezeModule" title="BuiltinModule.freezeModule ( moduleSpecifier )"><span class="secnum">5.2</span> BuiltinModule.freezeModule ( <var>moduleSpecifier</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-builtin-module.freezeAllModules" title="BuiltinModule.freezeAllModules ( )"><span class="secnum">5.3</span> BuiltinModule.freezeAllModules ( )</a></li><li><span class="item-toggle-none"></span><a href="#sec-builtin-module.hasModule" title="BuiltinModule.hasModule ( moduleSpecifier )"><span class="secnum">5.4</span> BuiltinModule.hasModule ( <var>moduleSpecifier</var> )</a></li><li><span class="item-toggle-none"></span><a href="#sec-builtin-module.import" title="BuiltinModule.import ( moduleSpecifier )"><span class="secnum">5.5</span> BuiltinModule.import ( <var>moduleSpecifier</var> )</a></li></ol></li><li><span class="item-toggle">◢</span><a href="#sec-host-layering-points" title="Host Layering Points"><span class="secnum">A</span> Host Layering Points</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-host-hooks-summary" title="Host Hooks"><span class="secnum">A.1</span> Host Hooks</a></li></ol></li></ol></div></div><div id="spec-container"><h1 class="version first">Stage 1 Draft / September 10, 2020</h1><h1 class="title">Builtin Modules</h1>
+
+<emu-intro id="sec-intro">
+  <h1>Introduction</h1>
+  <p>Proposal to add a mechanism for enabling a more extensive standard library in JavaScript via a collection of built in modules. With this infrastructure in place it will be possible to start iterating on standard library features as additional modules.</p>
+</emu-intro>
+
+<emu-clause id="sec-scope">
+  <h1><span class="secnum">1</span> Scope</h1>
+  <p>This Standard defines the ECMAScript 2021 general-purpose programming language.</p>
+</emu-clause>
+
+<emu-clause id="sec-ecmascript-language-scripts-and-modules">
+  <h1><span class="secnum">2</span> ECMAScript Language: Scripts and Modules</h1>
+
+  <emu-clause id="sec-scripts">
+    <h1><span class="secnum">2.1</span> Scripts</h1>
+    <p>...</p>
+  </emu-clause>
+
+  <emu-clause id="sec-modules">
+    <h1><span class="secnum">2.2</span> Modules</h1>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition"><emu-production name="Module" id="prod-Module">
+    <emu-nt><a href="#prod-Module">Module</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="52f49b96"><emu-nt optional="" id="_ref_138"><a href="#prod-ModuleBody">ModuleBody</a><emu-mods><emu-opt>opt</emu-opt></emu-mods></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ModuleBody" id="prod-ModuleBody">
+    <emu-nt><a href="#prod-ModuleBody">ModuleBody</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="89010d7d"><emu-nt id="_ref_139"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ModuleItemList" id="prod-ModuleItemList">
+    <emu-nt><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="029ec31e"><emu-nt id="_ref_140"><a href="#prod-ModuleItem">ModuleItem</a></emu-nt></emu-rhs>
+    <emu-rhs a="75ddb725"><emu-nt id="_ref_141"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt><emu-nt id="_ref_142"><a href="#prod-ModuleItem">ModuleItem</a></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ModuleItem" id="prod-ModuleItem">
+    <emu-nt><a href="#prod-ModuleItem">ModuleItem</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="e0559377"><emu-nt><a href="https://tc39.es/ecma262/#prod-ImportDeclaration">ImportDeclaration</a></emu-nt></emu-rhs>
+    <emu-rhs a="298e81b0"><emu-nt><a href="https://tc39.es/ecma262/#prod-ExportDeclaration">ExportDeclaration</a></emu-nt></emu-rhs>
+    <emu-rhs a="b8d22333"><emu-nt params="~Yield, ~Await, ~Return"><a href="https://tc39.es/ecma262/#prod-StatementListItem">StatementListItem</a><emu-mods><emu-params>[~Yield, ~Await, ~Return]</emu-params></emu-mods></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+
+    <emu-clause id="sec-module-semantics">
+      <h1><span class="secnum">2.2.1</span> Module Semantics</h1>
+
+    <emu-clause id="sec-abstract-module-records">
+      <h1><span class="secnum">2.2.1.1</span> Abstract Module Records</h1>
+        <p>A <dfn>Module Record</dfn> encapsulates structural information about the imports and exports of a single module. This information is used to link the imports and exports of sets of connected modules. A Module Record includes four fields that are only used when evaluating a module.</p>
+        <p>For specification purposes Module Record values are values of the <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">Record</a></emu-xref> specification type and can be thought of as existing in a simple object-oriented hierarchy where Module Record is an abstract class with both abstract and concrete subclasses. This specification defines the abstract subclass named <emu-xref href="#cyclic-module-record"><a href="https://tc39.es/ecma262/#cyclic-module-record">Cyclic Module Record</a></emu-xref> and its concrete subclass named <emu-xref href="#sourctextmodule-record"><a href="https://tc39.es/ecma262/#sourctextmodule-record">Source Text Module Record</a></emu-xref>. Other specifications and implementations may define additional Module Record subclasses corresponding to alternative module definition facilities that they defined.</p>
+        <p>Module Record defines the fields listed in <emu-xref href="#table-module-record-fields" id="_ref_0"><a href="#table-module-record-fields">Table 1</a></emu-xref>. All Module Definition subclasses include at least those fields. Module Record also defines the abstract method list in <emu-xref href="#table-abstract-methods-of-module-records" id="_ref_1"><a href="#table-abstract-methods-of-module-records">Table 2</a></emu-xref>. All Module definition subclasses must provide concrete implementations of these abstract methods.</p>
+        <emu-table id="table-module-record-fields" caption="Module Record Fields" oldids="table-36"><figure><figcaption>Table 1: <emu-xref href="#sec-abstract-module-records" id="_ref_11"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> Fields</figcaption><span id="table-36"></span>
+          <table>
+            <thead>
+            <tr>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Value Type
+              </th>
+              <th>
+                Meaning
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                [[Realm]]
+              </td>
+              <td>
+                <emu-xref href="#realm-record"><a href="https://tc39.es/ecma262/#realm-record">Realm Record</a></emu-xref> | <emu-val>undefined</emu-val>
+              </td>
+              <td>
+                The <emu-xref href="#realm"><a href="https://tc39.es/ecma262/#realm">Realm</a></emu-xref> within which this module was created. <emu-val>undefined</emu-val> if not yet assigned.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Environment]]
+              </td>
+              <td>
+                module <emu-xref href="#sec-environment-records"><a href="https://tc39.es/ecma262/#sec-environment-records">Environment Record</a></emu-xref> | <emu-val>undefined</emu-val>
+              </td>
+              <td>
+                The <emu-xref href="#sec-environment-records"><a href="https://tc39.es/ecma262/#sec-environment-records">Environment Record</a></emu-xref> containing the top level bindings for this module. This field is set when the module is linked.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[Namespace]]
+              </td>
+              <td>
+                Object | <emu-val>undefined</emu-val>
+              </td>
+              <td>
+                The Module Namespace Object (<emu-xref href="#sec-module-namespace-objects"><a href="https://tc39.es/ecma262/#sec-module-namespace-objects">26.3</a></emu-xref>) if one has been created for this module. Otherwise <emu-val>undefined</emu-val>.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                [[HostDefined]]
+              </td>
+              <td>
+                Any, default value is <emu-val>undefined</emu-val>.
+              </td>
+              <td>
+                Field reserved for use by host environments that need to associate additional information with a module.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </figure></emu-table>
+        <emu-table id="table-abstract-methods-of-module-records" caption="Abstract Methods of Module Records" oldids="table-37"><figure><figcaption>Table 2: Abstract Methods of Module Records</figcaption><span id="table-37"></span>
+          <table>
+            <tbody>
+            <tr>
+              <th>
+                Method
+              </th>
+              <th>
+                Purpose
+              </th>
+            </tr>
+            <tr>
+              <td>
+                GetExportedNames([<var>exportStarSet</var>])
+              </td>
+              <td>
+                Return a list of all names that are either directly or indirectly exported from this module.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                ResolveExport(<var>exportName</var> [, <var>resolveSet</var>])
+              </td>
+              <td>
+                <p>Return the binding of a name exported by this module. Bindings are represented by a <dfn id="resolvedbinding-record">ResolvedBinding Record</dfn>, of the form { [[Module]]: <emu-xref href="#sec-abstract-module-records" id="_ref_12"><a href="#sec-abstract-module-records">Module Record</a></emu-xref>, [[BindingName]]: String }. If the export is a Module Namespace Object without a direct binding in any module, [[BindingName]] will be set to <emu-val>"*namespace*"</emu-val>. Return <emu-val>null</emu-val> if the name cannot be resolved, or <emu-val>"ambiguous"</emu-val> if multiple bindings were found.</p>
+                <p>Each time this operation is called with a specific <var>exportName</var>, <var>resolveSet</var> pair as arguments it must return the same result if it completes normally.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Link()
+              </td>
+              <td>
+                <p>Prepare the module for evaluation by transitively resolving all module dependencies and creating a module <emu-xref href="#sec-environment-records"><a href="https://tc39.es/ecma262/#sec-environment-records">Environment Record</a></emu-xref>.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Evaluate()
+              </td>
+              <td>
+                <p>If this module has already been evaluated successfully, return <emu-val>undefined</emu-val>; if it has already been evaluated unsuccessfully, throw the exception that was produced. Otherwise, transitively evaluate all module dependencies of this module and then evaluate this module.</p>
+                <p>Link must have completed successfully prior to invoking this method.</p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </figure></emu-table>
+      </emu-clause>
+
+      <ins class="block">
+      <emu-clause id="sec-synthetic-module-records">
+        <h1><span class="secnum">2.2.1.2</span> Synthetic Module Records</h1>
+
+        <p>A <dfn>Synthetic Module Record</dfn> is used to represent information about a module that is defined by specifications. Its exports are derived from a pair of lists, of string keys and of ECMAScript values. The set of exported names is static, and determined at creation time (as an argument to <emu-xref aoid="CreateSyntheticModule" id="_ref_13"><a href="#sec-createsyntheticmodule">CreateSyntheticModule</a></emu-xref>), while the set of exported values can be changed over time using <emu-xref aoid="SetModuleExport" id="_ref_14"><a href="#sec-smr-setmoduleexport">SetModuleExport</a></emu-xref>. It has no imports or dependencies.</p>
+
+        <emu-note><span class="note">Note</span><div class="note-contents">A Synthetic Module Record could be used for defining a variety of module types: for example, built-in modules, or JSON modules, or CSS modules.</div></emu-note>
+
+        <p>In addition to the fields defined in <emu-xref href="#table-module-record-fields" id="_ref_2"><a href="#table-module-record-fields">Table 1</a></emu-xref>, Synthetic Module Records have the additional fields listed in <emu-xref href="#table-synthetic-module-record-fields" id="_ref_3"><a href="#table-synthetic-module-record-fields">Table 3</a></emu-xref>. Each of these fields is initially set in <emu-xref aoid="CreateSyntheticModule" id="_ref_15"><a href="#sec-createsyntheticmodule">CreateSyntheticModule</a></emu-xref>.</p>
+
+        <emu-table id="table-synthetic-module-record-fields" caption="Additional Fields of Synthetic Module Records"><figure><figcaption>Table 3: Additional Fields of Synthetic Module Records</figcaption>
+          <table>
+            <thead>
+              <tr><th>Field Name
+              </th><th>Value Type
+              </th><th>Meaning
+            </th></tr></thead>
+            <tbody>
+              <tr>
+                <td>[[ExportNames]]
+                </td><td><emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of String
+                </td><td>A <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of all names that are exported.
+              </td></tr>
+              <tr>
+                <td>[[IsFrozen]]
+                </td><td>Boolean
+                </td><td>If <emu-val>true</emu-val>, the module cannot be modified.
+              </td></tr>
+              <tr>
+                <td>[[EvaluationSteps]]
+                </td><td>An abstract operation
+                </td><td>An abstract operation that will be performed upon evaluation of the module, taking the <emu-xref href="#sec-synthetic-module-records" id="_ref_16"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> as its sole argument. These will usually set up the exported values, by using <emu-xref aoid="SetModuleExport" id="_ref_17"><a href="#sec-smr-setmoduleexport">SetModuleExport</a></emu-xref>. They must not modify [[ExportNames]]. They may return an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>.
+              </td></tr>
+            </tbody>
+          </table>
+        </figure></emu-table>
+
+        <emu-clause id="sec-createsyntheticmodule" aoid="CreateSyntheticModule">
+          <h1><span class="secnum">2.2.1.2.1</span> CreateSyntheticModule ( <var>exportNames</var>, <var>evaluationSteps</var>, <var>realm</var>, <var>hostDefined</var> )</h1>
+
+          <p>The abstract operation CreateSyntheticModule creates a <emu-xref href="#sec-synthetic-module-records" id="_ref_18"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> based upon the given exported names and evaluation steps. It performs the following steps:</p>
+
+          <emu-alg><ol><li>Return <emu-xref href="#sec-synthetic-module-records" id="_ref_19"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> { [[Realm]]: <var>realm</var>, [[Environment]]: <emu-val>undefined</emu-val>, [[Namespace]]: <emu-val>undefined</emu-val>, [[HostDefined]]: <var>hostDefined</var>, [[ExportNames]]: <var>exportNames</var>, [[IsFrozen]]: <emu-val>false</emu-val>, [[EvaluationSteps]]: <var>evaluationSteps</var> }.</li></ol></emu-alg>
+
+          <emu-note type="editor"><span class="note">Editor's Note</span><div class="note-contents">It seems we could set up the environment either here or in Instantiate(). I've chosen to do so in Instantiate() for symmetry with Source Text Module Records, but I don't think there's any actual requirement in that regard.</div></emu-note>
+        </emu-clause>
+
+        <emu-clause id="sec-smr-concrete-methods">
+          <h1><span class="secnum">2.2.1.2.2</span> Concrete Methods</h1>
+
+          <p>The following are the concrete methods for <emu-xref href="#sec-synthetic-module-records" id="_ref_20"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> that implement the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_21"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract methods.</p>
+
+          <emu-note type="editor"><span class="note">Editor's Note</span><div class="note-contents">I find having this wrapping sub-clause cleaner and suggest we do the same for Source Text Module Records in the main spec.</div></emu-note>
+
+          <emu-clause id="sec-smr-freeze">
+            <h1><span class="secnum">2.2.1.2.2.1</span> Freeze ( )</h1>
+
+            <p>The Freeze concrete method of a <emu-xref href="#sec-synthetic-module-records" id="_ref_22"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> implements the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_23"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract method.</p>
+            <p>It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_24"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>Set <var>module</var>.[[IsFrozen]] to <emu-val>true</emu-val>.</li></ol></emu-alg>
+          </emu-clause>
+
+          <emu-clause id="sec-smr-getexportednames">
+            <h1><span class="secnum">2.2.1.2.2.2</span> GetExportedNames ( <var>exportStarSet</var> )</h1>
+
+            <p>The GetExportedNames concrete method of a <emu-xref href="#sec-synthetic-module-records" id="_ref_25"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> implements the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_26"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract method.</p>
+            <p>It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_27"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>Return <var>module</var>.[[ExportNames]].</li></ol></emu-alg>
+          </emu-clause>
+
+          <emu-clause id="sec-smr-resolveexport">
+            <h1><span class="secnum">2.2.1.2.2.3</span> ResolveExport ( <var>exportName</var>, <var>resolveSet</var> )</h1>
+
+            <p>The ResolveExport concrete method of a <emu-xref href="#sec-synthetic-module-records" id="_ref_28"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> implements the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_29"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract method.</p>
+            <p>It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_30"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>If <var>module</var>.[[ExportNames]] does not contain <var>exportName</var>, return null.</li><li>Return <emu-xref href="#resolvedbinding-record" id="_ref_31"><a href="#resolvedbinding-record">ResolvedBinding Record</a></emu-xref> { [[Module]]: <var>module</var>, [[BindingName]]: <var>exportName</var> }.</li></ol></emu-alg>
+          </emu-clause>
+
+          <emu-clause id="sec-smr-setmoduleexport" aoid="SetModuleExport">
+            <h1><span class="secnum">2.2.1.2.2.4</span> SetModuleExport ( <var>exportName</var>, <var>exportValue</var> )</h1>
+
+            <p>The abstract operation SetModuleExport can be used to set or change the exported value for a pre-established export of a <emu-xref href="#sec-synthetic-module-records" id="_ref_32"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>. It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_33"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>Let <var>envRec</var> be <var>module</var>.[[Environment]]'s <emu-xref href="#sec-lexical-environments"><a href="https://tc39.es/ecma262/#sec-lexical-environments">EnvironmentRecord</a></emu-xref>.</li><li>Perform <var>envRec</var>.SetMutableBinding(<var>exportName</var>, <var>exportValue</var>, <emu-val>true</emu-val>).</li></ol></emu-alg>
+          </emu-clause>
+
+          <emu-clause id="sec-smr-instantiate">
+            <h1><span class="secnum">2.2.1.2.2.5</span> Instantiate ( )</h1>
+
+            <p>The Instantiate concrete method of a <emu-xref href="#sec-synthetic-module-records" id="_ref_34"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> implements the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_35"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract method.</p>
+            <p>It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_36"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>Let <var>realm</var> be <var>module</var>.[[Realm]].</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>realm</var> is not <emu-val>undefined</emu-val>.</li><li>Let <var>env</var> be <emu-xref aoid="NewModuleEnvironment" id="_ref_37"><a href="https://tc39.es/ecma262/#sec-newmoduleenvironment">NewModuleEnvironment</a></emu-xref>(<var>realm</var>.[[GlobalEnv]]).</li><li>Set <var>module</var>.[[Environment]] to <var>env</var>.</li><li>Let <var>envRec</var> be <var>env</var>'s <emu-xref href="#sec-lexical-environments"><a href="https://tc39.es/ecma262/#sec-lexical-environments">EnvironmentRecord</a></emu-xref>.</li><li>For each element <var>exportName</var> in <var>module</var>.[[ExportNames]], do<ol><li>Perform ! <var>envRec</var>.CreateMutableBinding(<var>exportName</var>, <emu-val>false</emu-val>).</li><li>Perform ! <var>envRec</var>.InitializeBinding(<var>exportName</var>, <emu-val>undefined</emu-val>).</li></ol></li><li>Return <emu-val>undefined</emu-val>.</li></ol></emu-alg>
+          </emu-clause>
+
+          <emu-clause id="sec-smr-Evaluate">
+            <h1><span class="secnum">2.2.1.2.2.6</span> Evaluate ( )</h1>
+
+            <p>The Evaluate concrete method of a <emu-xref href="#sec-synthetic-module-records" id="_ref_38"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> implements the corresponding <emu-xref href="#sec-abstract-module-records" id="_ref_39"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> abstract method.</p>
+            <p>It performs the following steps:</p>
+
+            <emu-alg><ol><li>Let <var>module</var> be this <emu-xref href="#sec-synthetic-module-records" id="_ref_40"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.</li><li>Let <var>moduleCxt</var> be a new ECMAScript code <emu-xref href="#sec-execution-contexts"><a href="https://tc39.es/ecma262/#sec-execution-contexts">execution context</a></emu-xref>.</li><li>Set the Function of <var>moduleCxt</var> to <emu-val>null</emu-val>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>module</var>.[[Realm]] is not <emu-val>undefined</emu-val>.</li><li>Set the <emu-xref href="#realm"><a href="https://tc39.es/ecma262/#realm">Realm</a></emu-xref> of <var>moduleCxt</var> to <var>module</var>.[[Realm]].</li><li>Set the ScriptOrModule of <var>moduleCxt</var> to <var>module</var>.</li><li>Set the VariableEnvironment of <var>moduleCxt</var> to <var>module</var>.[[Environment]].</li><li>Set the LexicalEnvironment of <var>moduleCxt</var> to <var>module</var>.[[Environment]].</li><li><emu-xref aoid="Suspend" id="_ref_41"><a href="https://tc39.es/ecma262/#sec-suspend">Suspend</a></emu-xref> the currently <emu-xref href="#running-execution-context"><a href="https://tc39.es/ecma262/#running-execution-context">running execution context</a></emu-xref>.</li><li>Push <var>moduleCxt</var> on to the <emu-xref href="#execution-context-stack"><a href="https://tc39.es/ecma262/#execution-context-stack">execution context stack</a></emu-xref>; <var>moduleCxt</var> is now the <emu-xref href="#running-execution-context"><a href="https://tc39.es/ecma262/#running-execution-context">running execution context</a></emu-xref>.</li><li>Let <var>result</var> be the result of performing ? <var>module</var>.[[EvaluationSteps]](<var>module</var>).</li><li><emu-xref aoid="Suspend" id="_ref_42"><a href="https://tc39.es/ecma262/#sec-suspend">Suspend</a></emu-xref> <var>moduleCxt</var> and remove it from the <emu-xref href="#execution-context-stack"><a href="https://tc39.es/ecma262/#execution-context-stack">execution context stack</a></emu-xref>.</li><li>Resume the context that is now on the top of the <emu-xref href="#execution-context-stack"><a href="https://tc39.es/ecma262/#execution-context-stack">execution context stack</a></emu-xref> as the <emu-xref href="#running-execution-context"><a href="https://tc39.es/ecma262/#running-execution-context">running execution context</a></emu-xref>.</li><li>Return <emu-xref aoid="Completion" id="_ref_43"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">Completion</a></emu-xref>(<var>result</var>).</li></ol></emu-alg>
+          </emu-clause>
+        </emu-clause>
+
+        <emu-clause id="example-synthetic-module-record">
+          <h1><span class="secnum">2.2.1.2.3</span> Example uses of Synthetic Module Records</h1>
+
+          <p>This non-normative section shows how one could define a few different Synthetic Module Records.</p>
+
+          <emu-note type="editor"><span class="note">Editor's Note</span><div class="note-contents">Although these seem somewhat verbose, that is largely because ECMAScript specification text doesn't generally allow "closures" where you would define an algorithm or set of steps inline. Host environment specification styles are different, and hosts could write their synthetic module creation more compactly and concisely by inlining instead of using separately-defined evaluation steps.</div></emu-note>
+
+          <emu-clause id="example-smr-object-wrapper">
+            <h1><span class="secnum">2.2.1.2.3.1</span> A module wrapping a single object</h1>
+
+            <p>The following algorithm, given an object <var>object</var>, creates a <emu-xref href="#sec-synthetic-module-records" id="_ref_44"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> which default-exports the object. This might be useful, for example, for JSON or CSS modules.</p>
+
+            <emu-alg><ol><li>Return <emu-xref aoid="CreateSyntheticModule" id="_ref_45"><a href="#sec-createsyntheticmodule">CreateSyntheticModule</a></emu-xref>(« <code>"default"</code> », <emu-xref aoid="ExampleObjectWrapperModuleEvaluation" id="_ref_46"><a href="#example-smr-object-wrapper-evaluation-steps">ExampleObjectWrapperModuleEvaluation</a></emu-xref>, <emu-xref href="#current-realm"><a href="https://tc39.es/ecma262/#current-realm">the current Realm Record</a></emu-xref>, <var>object</var>).</li></ol></emu-alg>
+
+            <emu-clause id="example-smr-object-wrapper-evaluation-steps" aoid="ExampleObjectWrapperModuleEvaluation">
+              <h1><span class="secnum">2.2.1.2.3.1.1</span> ExampleObjectWrapperModuleEvaluation ( <var>module</var> )</h1>
+
+              <emu-alg><ol><li>Perform <var>module</var>.<emu-xref aoid="SetModuleExport" id="_ref_47"><a href="#sec-smr-setmoduleexport">SetModuleExport</a></emu-xref>( <code>"default"</code>, <var>module</var>.[[HostDefined]]).</li></ol></emu-alg>
+            </emu-clause>
+          </emu-clause>
+
+          <emu-clause id="example-smr-object-addition">
+            <h1><span class="secnum">2.2.1.2.3.2</span> A "builtin module" for addition</h1>
+
+            <p>The following algorithm creates a <emu-xref href="#sec-synthetic-module-records" id="_ref_48"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> with a single export, <code>"add"</code>, which provides a built-in <emu-xref href="#function-object"><a href="https://tc39.es/ecma262/#function-object">function object</a></emu-xref> that adds its two arguments.</p>
+
+            <emu-alg><ol><li>Return <emu-xref aoid="CreateSyntheticModule" id="_ref_49"><a href="#sec-createsyntheticmodule">CreateSyntheticModule</a></emu-xref>(« <code>"add"</code> », <emu-xref aoid="ExampleAdderModuleEvaluation" id="_ref_50"><a href="#example-smr-adder-evaluation-steps">ExampleAdderModuleEvaluation</a></emu-xref>, <emu-xref href="#current-realm"><a href="https://tc39.es/ecma262/#current-realm">the current Realm Record</a></emu-xref>, <emu-val>undefined</emu-val>).</li></ol></emu-alg>
+
+            <emu-clause id="example-smr-adder-evaluation-steps" aoid="ExampleAdderModuleEvaluation">
+              <h1><span class="secnum">2.2.1.2.3.2.1</span> ExampleAdderModuleEvaluation ( <var>module</var> )</h1>
+
+              <emu-alg><ol><li>Let <var>adderSteps</var> be the algorithm steps defined in <emu-xref href="#example-smr-adder-function-steps" title="" id="_ref_4"><a href="#example-smr-adder-function-steps">Example Adder Functions</a></emu-xref>.</li><li>Let <var>adderFunction</var> be <emu-xref aoid="CreateBuiltinFunction" id="_ref_51"><a href="https://tc39.es/ecma262/#sec-createbuiltinfunction">CreateBuiltinFunction</a></emu-xref>(<var>adderSteps</var>).</li><li>Perform <var>module</var><emu-xref aoid="SetModuleExport" id="_ref_52"><a href="#sec-smr-setmoduleexport">SetModuleExport</a></emu-xref>( <code>"add"</code>, <var>adderFunction</var>).</li></ol></emu-alg>
+            </emu-clause>
+
+            <emu-clause id="example-smr-adder-function-steps">
+              <h1><span class="secnum">2.2.1.2.3.2.2</span> Example Adder Functions</h1>
+
+              <p>An example adder function is an anonymous built-in function. When called with arguments <var>arg1</var> and <var>arg2</var>, the following steps are taken:</p>
+
+              <emu-alg><ol><li>Set <var>arg1</var> to ?&nbsp;<emu-xref aoid="ToNumber" id="_ref_53"><a href="https://tc39.es/ecma262/#sec-tonumber">ToNumber</a></emu-xref>(<var>arg1</var>).</li><li>Set <var>arg2</var> to ?&nbsp;<emu-xref aoid="ToNumber" id="_ref_54"><a href="https://tc39.es/ecma262/#sec-tonumber">ToNumber</a></emu-xref>(<var>arg2</var>).</li><li>Return <var>arg1</var> + <var>arg2</var>.</li></ol></emu-alg>
+            </emu-clause>
+          </emu-clause>
+        </emu-clause>
+      </emu-clause>
+      </ins>
+
+      <ins class="block">
+      <emu-clause id="sec-hosthasbuiltinmodule" aoid="HostHasBuiltinModule">
+        <h1><span class="secnum">2.2.1.3</span> Runtime Semantics: HostHasBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</h1>
+        <p>HostHasBuiltinModule is a host-defined abstract operation that provides a means check for a module registered with <emu-nt id="_ref_143"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, occurring within the context of the script or module represented by the <emu-xref href="#script-record"><a href="https://tc39.es/ecma262/#script-record">Script Record</a></emu-xref> or <emu-xref href="#sec-abstract-module-records" id="_ref_55"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingScriptOrModule</var>. <var>referencingScriptOrModule</var> may also be <emu-val>null</emu-val>, if the resolution is being performed in the context of an <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> expression, and there is no active script or module at that time.</p>
+
+        <p>The implementation of <emu-xref aoid="HostResolveBuiltinModule" id="_ref_56"><a href="#sec-hostresolvebuiltinmodule">HostResolveBuiltinModule</a></emu-xref> must conform to the following requirements:</p>
+        <ul>
+          <li>
+            The normal return value is a <emu-val>Boolean</emu-val>, <emu-val>true</emu-val> if a mtching module can be found and <emu-val>false</emu-val> otherwise.
+          </li>
+        </ul>
+        <p>Multiple different <var>referencingScriptOrModule</var>, <var>specifier</var> pairs may map to the same <emu-xref href="#sec-abstract-module-records" id="_ref_57"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance. The actual mapping semantic is host-defined but typically a normalization process is applied to <var>specifier</var> as part of the mapping process. A typical normalization process would include actions such as alphabetic case folding and expansion of relative and abbreviated path specifiers.</p>
+      </emu-clause>
+      </ins>
+
+      <ins class="block">
+      <emu-clause id="sec-hostcreatebuiltinmodule" aoid="HostCreateBuiltinModule">
+        <h1><span class="secnum">2.2.1.4</span> Runtime Semantics: HostCreateBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>module</var> )</h1>
+        <p>HostCreateBuiltinModule is a host-defined abstract operation that adds a module defined by the <emu-xref href="#sec-synthetic-module-records" id="_ref_58"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>, <var>module</var>, with the key <emu-nt id="_ref_144"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, within the context of the script or module represented by the <emu-xref href="#script-record"><a href="https://tc39.es/ecma262/#script-record">Script Record</a></emu-xref> or <emu-xref href="#sec-abstract-module-records" id="_ref_59"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingScriptOrModule</var>.</p>
+
+        <p>The implementation of HostCreateBuiltinModule must conform to the following requirements:</p>
+        <ul>
+          <li>
+            The value of <var>referencingScriptOrModule</var> must not be <emu-val>null</emu-val>.
+          </li>
+          <li>
+            If a <emu-xref href="#sec-abstract-module-records" id="_ref_60"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> corresponding to the pair <var>referencingScriptOrModule</var>, <var>specifier</var> already exists, it is replaced.
+          </li>
+        </ul>
+      </emu-clause>
+      </ins>
+
+      <ins class="block">
+      <emu-clause id="sec-hostresolvebuiltinmodule" aoid="HostResolveBuiltinModule">
+        <h1><span class="secnum">2.2.1.5</span> Runtime Semantics: HostResolveBuiltinModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</h1>
+        <p>HostResolveBuiltinModule is a host-defined abstract operation that provides the <emu-xref href="#sec-synthetic-module-records" id="_ref_61"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref> instance that corresponds to the <emu-nt id="_ref_145"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, occurring within the context of the script or module represented by the <emu-xref href="#script-record"><a href="https://tc39.es/ecma262/#script-record">Script Record</a></emu-xref> or <emu-xref href="#sec-abstract-module-records" id="_ref_62"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingScriptOrModule</var>. <var>referencingScriptOrModule</var> may also be <emu-val>null</emu-val>, if the resolution is being performed in the context of an <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> expression, and there is no active script or module at that time.</p>
+
+        <emu-note><span class="note">Note</span><div class="note-contents">
+          <p>It is possible for a host to implement this abstract operation with <emu-xref aoid="HostResolveImportedModule" id="_ref_63"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref>.</p>
+        </div></emu-note>
+
+        <p>The implementation of HostResolveBuiltinModule must conform to the following requirements:</p>
+        <ul>
+          <li>
+            The normal return value must be an instance of a <emu-xref href="#sec-synthetic-module-records" id="_ref_64"><a href="#sec-synthetic-module-records">Synthetic Module Record</a></emu-xref>.
+          </li>
+          <li>
+            If a <emu-xref href="#sec-abstract-module-records" id="_ref_65"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> corresponding to the pair <var>referencingScriptOrModule</var>, <var>specifier</var> does not exist or cannot be created, an exception must be thrown.
+          </li>
+          <li>
+            Each time this operation is called with a specific <var>referencingScriptOrModule</var>, <var>specifier</var> pair as arguments it must return the same <emu-xref href="#sec-abstract-module-records" id="_ref_66"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance if it completes normally.
+          </li>
+        </ul>
+        <p>Multiple different <var>referencingScriptOrModule</var>, <var>specifier</var> pairs may map to the same <emu-xref href="#sec-abstract-module-records" id="_ref_67"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance. The actual mapping semantic is host-defined but typically a normalization process is applied to <var>specifier</var> as part of the mapping process. A typical normalization process would include actions such as alphabetic case folding and expansion of relative and abbreviated path specifiers.</p>
+      </emu-clause>
+      </ins>
+
+      <emu-clause id="sec-hostresolveimportedmodule" aoid="HostResolveImportedModule">
+        <h1><span class="secnum">2.2.1.6</span> Runtime Semantics: HostResolveImportedModule ( <var>referencingScriptOrModule</var>, <var>specifier</var> )</h1>
+        <p>HostResolveImportedModule is a host-defined abstract operation that provides the concrete <emu-xref href="#sec-abstract-module-records" id="_ref_68"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> subclass instance that corresponds to the <emu-nt id="_ref_146"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, occurring within the context of the script or module represented by the <emu-xref href="#script-record"><a href="https://tc39.es/ecma262/#script-record">Script Record</a></emu-xref> or <emu-xref href="#sec-abstract-module-records" id="_ref_69"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingScriptOrModule</var>. <var>referencingScriptOrModule</var> may also be <emu-val>null</emu-val>, if the resolution is being performed in the context of an <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> expression, and there is no active script or module at that time.</p>
+
+        <emu-note><span class="note">Note</span><div class="note-contents">
+          <p>An example of when <var>referencingScriptOrModule</var> can be <emu-val>null</emu-val> is in a web browser host. There, if a user clicks on a control given by</p>
+
+          <pre><code class="html hljs"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"import('./foo.mjs')"</span>&gt;</span>Click me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+          <p>there will be no active script or module at the time the <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> expression runs. More generally, this can happen in any situation where the host pushes execution contexts with <emu-val>null</emu-val> ScriptOrModule components onto the <emu-xref href="#execution-context-stack"><a href="https://tc39.es/ecma262/#execution-context-stack">execution context stack</a></emu-xref>.</p>
+        </div></emu-note>
+
+        <p>The implementation of HostResolveImportedModule must conform to the following requirements:</p>
+        <ul>
+          <li>
+            The normal return value must be an instance of a concrete subclass of <emu-xref href="#sec-abstract-module-records" id="_ref_70"><a href="#sec-abstract-module-records">Module Record</a></emu-xref>.
+          </li>
+          <li>
+            If a <emu-xref href="#sec-abstract-module-records" id="_ref_71"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> corresponding to the pair <var>referencingScriptOrModule</var>, <var>specifier</var> does not exist or cannot be created, an exception must be thrown.
+          </li>
+          <li>
+            Each time this operation is called with a specific <var>referencingScriptOrModule</var>, <var>specifier</var> pair as arguments it must return the same <emu-xref href="#sec-abstract-module-records" id="_ref_72"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance if it completes normally.
+          </li>
+        </ul>
+        <p>Multiple different <var>referencingScriptOrModule</var>, <var>specifier</var> pairs may map to the same <emu-xref href="#sec-abstract-module-records" id="_ref_73"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance. The actual mapping semantic is host-defined but typically a normalization process is applied to <var>specifier</var> as part of the mapping process. A typical normalization process would include actions such as alphabetic case folding and expansion of relative and abbreviated path specifiers.</p>
+      </emu-clause>
+
+      <emu-clause id="sec-hostimportmoduledynamically" aoid="HostImportModuleDynamically">
+        <h1><span class="secnum">2.2.1.7</span> Runtime Semantics: HostImportModuleDynamically ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var> )</h1>
+        <p>HostImportModuleDynamically is a host-defined abstract operation that performs any necessary setup work in order to make available the module corresponding to the <emu-nt id="_ref_147"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, occurring within the context of the script or module represented by the <emu-xref href="#script-record"><a href="https://tc39.es/ecma262/#script-record">Script Record</a></emu-xref> or <emu-xref href="#sec-abstract-module-records" id="_ref_74"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingScriptOrModule</var>. (<var>referencingScriptOrModule</var> may also be <emu-val>null</emu-val>, if there is no active script or module when the <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> expression occurs.) It then performs <emu-xref aoid="FinishDynamicImport" id="_ref_75"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref> to finish the dynamic import process.</p>
+
+        <p>The implementation of HostImportModuleDynamically must conform to the following requirements:</p>
+
+        <ul>
+          <li>
+            The abstract operation must always complete normally with <emu-val>undefined</emu-val>. Success or failure must instead be signaled as discussed below.
+          </li>
+          <li>
+            The host environment must conform to one of the two following sets of requirements:
+            <dl>
+              <dt>Success path</dt>
+
+              <dd>
+                <ul>
+                  <li>At some future time, the host environment must perform <emu-xref aoid="FinishDynamicImport" id="_ref_76"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref>(<var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var>, <emu-xref aoid="NormalCompletion" id="_ref_77"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<emu-val>undefined</emu-val>)).</li>
+
+                  <li>Any subsequent call to <emu-xref aoid="HostResolveImportedModule" id="_ref_78"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref> after <emu-xref aoid="FinishDynamicImport" id="_ref_79"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref> has completed, given the arguments <var>referencingScriptOrModule</var> and <var>specifier</var>, must complete normally.</li>
+
+                  <li>The completion value of any subsequent call to <emu-xref aoid="HostResolveImportedModule" id="_ref_80"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref> after <emu-xref aoid="FinishDynamicImport" id="_ref_81"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref> has completed, given the arguments <var>referencingScriptOrModule</var> and <var>specifier</var>, must be a module which has already been evaluated, i.e. whose Evaluate concrete method has already been called and returned a normal completion.</li>
+                </ul>
+              </dd>
+
+              <dt>Failure path</dt>
+
+              <dd>
+                <ul>
+                  <li>At some future time, the host environment must perform <emu-xref aoid="FinishDynamicImport" id="_ref_82"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref>(<var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var>, an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>), with the <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref> representing the cause of failure.</li>
+                </ul>
+              </dd>
+            </dl>
+          </li>
+          <li>
+            If the host environment takes the success path once for a given <var>referencingScriptOrModule</var>, <var>specifier</var> pair, it must always do so for subsequent calls.
+          </li>
+          <li>
+            The operation must not call <var>promiseCapability</var>.[[Resolve]] or <var>promiseCapability</var>.[[Reject]], but instead must treat <var>promiseCapability</var> as an opaque identifying value to be passed through to <emu-xref aoid="FinishDynamicImport" id="_ref_83"><a href="#sec-finishdynamicimport">FinishDynamicImport</a></emu-xref>.
+          </li>
+        </ul>
+
+        <p>The actual process performed is host-defined, but typically consists of performing whatever I/O operations are necessary to allow <emu-xref aoid="HostResolveImportedModule" id="_ref_84"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref> to synchronously retrieve the appropriate <emu-xref href="#sec-abstract-module-records" id="_ref_85"><a href="#sec-abstract-module-records">Module Record</a></emu-xref>, and then calling its Evaluate concrete method. This might require performing similar normalization as <emu-xref aoid="HostResolveImportedModule" id="_ref_86"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref> does.</p>
+      </emu-clause>
+
+      <emu-clause id="sec-finishdynamicimport" aoid="FinishDynamicImport">
+        <h1><span class="secnum">2.2.1.8</span> Runtime Semantics: FinishDynamicImport ( <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var>, <var>completion</var> )</h1>
+        <p>The abstract operation FinishDynamicImport takes arguments <var>referencingScriptOrModule</var>, <var>specifier</var>, <var>promiseCapability</var> (a PromiseCapability <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">Record</a></emu-xref>), and <var>completion</var>. FinishDynamicImport completes the process of a dynamic import originally started by an <emu-xref href="#sec-import-calls"><a href="https://tc39.es/ecma262/#sec-import-calls"><code>import()</code></a></emu-xref> call, resolving or rejecting the promise returned by that call as appropriate according to <var>completion</var>. It is performed by host environments as part of <emu-xref aoid="HostImportModuleDynamically" id="_ref_87"><a href="#sec-hostimportmoduledynamically">HostImportModuleDynamically</a></emu-xref>. It performs the following steps when called:</p>
+
+        <emu-alg><ol><li>If <var>completion</var> is an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, then perform !&nbsp;<emu-xref aoid="Call" id="_ref_88"><a href="https://tc39.es/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Reject]], <emu-val>undefined</emu-val>, « <var>completion</var>.[[Value]] »).</li><li>Else,<ol><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>completion</var> is a normal completion and <var>completion</var>.[[Value]] is <emu-val>undefined</emu-val>.</li><li>Let <var>moduleRecord</var> be !&nbsp;<emu-xref aoid="HostResolveImportedModule" id="_ref_89"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref>(<var>referencingScriptOrModule</var>, <var>specifier</var>).</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: Evaluate has already been invoked on <var>moduleRecord</var> and successfully completed.</li><li>Let <var>namespace</var> be <emu-xref aoid="GetModuleNamespace" id="_ref_90"><a href="#sec-getmodulenamespace">GetModuleNamespace</a></emu-xref>(<var>moduleRecord</var>).</li><li>If <var>namespace</var> is an <emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, perform !&nbsp;<emu-xref aoid="Call" id="_ref_91"><a href="https://tc39.es/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Reject]], <emu-val>undefined</emu-val>, « <var>namespace</var>.[[Value]] »).</li><li>Else, perform !&nbsp;<emu-xref aoid="Call" id="_ref_92"><a href="https://tc39.es/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Resolve]], <emu-val>undefined</emu-val>, « <var>namespace</var>.[[Value]] »).</li></ol></li></ol></emu-alg>
+      </emu-clause>
+
+      <emu-clause id="sec-getmodulenamespace" aoid="GetModuleNamespace">
+        <h1><span class="secnum">2.2.1.9</span> Runtime Semantics: GetModuleNamespace ( <var>module</var> )</h1>
+        <p>The abstract operation GetModuleNamespace takes argument <var>module</var>. It retrieves the Module Namespace Object representing <var>module</var>'s exports, lazily creating it the first time it was requested, and storing it in <var>module</var>.[[Namespace]] for future retrieval. It performs the following steps when called:</p>
+
+        <emu-alg><ol><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>module</var> is an instance of a concrete subclass of <emu-xref href="#sec-abstract-module-records" id="_ref_93"><a href="#sec-abstract-module-records">Module Record</a></emu-xref>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: If <var>module</var> is a <emu-xref href="#cyclic-module-record"><a href="https://tc39.es/ecma262/#cyclic-module-record">Cyclic Module Record</a></emu-xref>, then <var>module</var>.[[Status]] is not <emu-const>unlinked</emu-const>.</li><li>Let <var>namespace</var> be <var>module</var>.[[Namespace]].</li><li>If <var>namespace</var> is <emu-val>undefined</emu-val>, then<ol><li>Let <var>exportedNames</var> be ? <var>module</var>.GetExportedNames().</li><li>Let <var>unambiguousNames</var> be a new empty <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref>.</li><li>For each element <var>name</var> of <var>exportedNames</var>, do<ol><li>Let <var>resolution</var> be ? <var>module</var>.ResolveExport(<var>name</var>).</li><li>If <var>resolution</var> is a <emu-xref href="#resolvedbinding-record" id="_ref_94"><a href="#resolvedbinding-record">ResolvedBinding Record</a></emu-xref>, append <var>name</var> to <var>unambiguousNames</var>.</li></ol></li><li>Set <var>namespace</var> to <emu-xref aoid="ModuleNamespaceCreate" id="_ref_95"><a href="https://tc39.es/ecma262/#sec-modulenamespacecreate">ModuleNamespaceCreate</a></emu-xref>(<var>module</var>, <var>unambiguousNames</var>).</li></ol></li><li>Return <var>namespace</var>.</li></ol></emu-alg>
+        <emu-note><span class="note">Note</span><div class="note-contents">
+          <p>The only way GetModuleNamespace can throw is via one of the triggered <emu-xref aoid="HostResolveImportedModule" id="_ref_96"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref> calls. Unresolvable names are simply excluded from the namespace at this point. They will lead to a real linking error later unless they are all ambiguous star exports that are not explicitly requested anywhere.</p>
+        </div></emu-note>
+      </emu-clause>
+
+      <emu-clause id="sec-module-semantics-runtime-semantics-evaluation">
+        <h1><span class="secnum">2.2.1.10</span> Runtime Semantics: Evaluation</h1>
+        <emu-grammar><emu-production name="Module" collapsed="">
+    <emu-nt><a href="#prod-Module">Module</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="37b9c04c"><emu-gann>[empty]</emu-gann></emu-rhs>
+</emu-production></emu-grammar>
+        <emu-alg><ol><li>Return <emu-xref aoid="NormalCompletion" id="_ref_97"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<emu-val>undefined</emu-val>).</li></ol></emu-alg>
+        <emu-grammar><emu-production name="ModuleBody" collapsed="">
+    <emu-nt><a href="#prod-ModuleBody">ModuleBody</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="89010d7d"><emu-nt id="_ref_148"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+        <emu-alg><ol><li>Let <var>result</var> be the result of evaluating <emu-nt id="_ref_149"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt>.</li><li>If <var>result</var>.[[Type]] is <emu-const>normal</emu-const> and <var>result</var>.[[Value]] is <emu-const>empty</emu-const>, then<ol><li>Return <emu-xref aoid="NormalCompletion" id="_ref_98"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<emu-val>undefined</emu-val>).</li></ol></li><li>Return <emu-xref aoid="Completion" id="_ref_99"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">Completion</a></emu-xref>(<var>result</var>).</li></ol></emu-alg>
+        <emu-grammar><emu-production name="ModuleItemList" collapsed="">
+    <emu-nt><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="75ddb725"><emu-nt id="_ref_150"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt><emu-nt id="_ref_151"><a href="#prod-ModuleItem">ModuleItem</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+        <emu-alg><ol><li>Let <var>sl</var> be the result of evaluating <emu-nt id="_ref_152"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt>.</li><li><emu-xref aoid="ReturnIfAbrupt" id="_ref_100"><a href="https://tc39.es/ecma262/#sec-returnifabrupt">ReturnIfAbrupt</a></emu-xref>(<var>sl</var>).</li><li>Let <var>s</var> be the result of evaluating <emu-nt id="_ref_153"><a href="#prod-ModuleItem">ModuleItem</a></emu-nt>.</li><li>Return <emu-xref aoid="Completion" id="_ref_101"><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type">Completion</a></emu-xref>(<emu-xref aoid="UpdateEmpty" id="_ref_102"><a href="https://tc39.es/ecma262/#sec-updateempty">UpdateEmpty</a></emu-xref>(<var>s</var>, <var>sl</var>)).</li></ol></emu-alg>
+        <emu-note><span class="note">Note</span><div class="note-contents">
+          <p>The value of a <emu-nt id="_ref_154"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt> is the value of the last value-producing item in the <emu-nt id="_ref_155"><a href="#prod-ModuleItemList">ModuleItemList</a></emu-nt>.</p>
+        </div></emu-note>
+        <emu-grammar><emu-production name="ModuleItem" collapsed="">
+    <emu-nt><a href="#prod-ModuleItem">ModuleItem</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="e0559377"><emu-nt><a href="https://tc39.es/ecma262/#prod-ImportDeclaration">ImportDeclaration</a></emu-nt></emu-rhs>
+</emu-production></emu-grammar>
+        <emu-alg><ol><li>Return <emu-xref aoid="NormalCompletion" id="_ref_103"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<emu-const>empty</emu-const>).</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
+</emu-clause>
+
+<ins class="block">
+<emu-clause id="sec-ecmascript-language-standard-library">
+  <h1><span class="secnum">3</span> ECMAScript Language: Standard Library</h1>
+
+  <p>The Standard Library contains a set of modules builtin within the implementation. These builtin library modules may reside within the ECMAScript language implementation or they may be part of the containing host.</p>
+  <emu-clause id="sec-standard-library-imports">
+    <h1><span class="secnum">3.1</span> Standard Library Imports</h1>
+    <p>Importing a library follows the same syntax as importing any other type of module. The difference is the format of the <emu-nt><a href="https://tc39.es/ecma262/#prod-StringLiteral">StringLiteral</a></emu-nt> of a standard library begins with a <emu-nt id="_ref_156"><a href="#prod-ModuleDomain">ModuleDomain</a></emu-nt> that specifies where the module resides. For ECMAScript modules, the <emu-nt id="_ref_157"><a href="#prod-ModuleDomain">ModuleDomain</a></emu-nt> is <code>js:</code>. Host environments can define additional <emu-nt id="_ref_158"><a href="#prod-ModuleDomain">ModuleDomain</a></emu-nt>s.</p>
+    <h2>Syntax</h2>
+    <emu-grammar type="definition"><emu-production name="ModuleSpecifier" id="prod-ModuleSpecifier">
+    <emu-nt><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="d4eaa0ab"><emu-nt id="_ref_159"><a href="#prod-ModuleDomain">ModuleDomain</a></emu-nt><emu-nt><a href="https://tc39.es/ecma262/#prod-StringLiteral">StringLiteral</a></emu-nt></emu-rhs>
+</emu-production>
+<emu-production name="ModuleDomain" id="prod-ModuleDomain">
+    <emu-nt><a href="#prod-ModuleDomain">ModuleDomain</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="89497f34"><emu-t>js:</emu-t></emu-rhs>
+</emu-production></emu-grammar>
+
+    <h2>Builtin Module List</h2>
+    <p>A Map of provided builtin modules is included in the <emu-xref href="#global-environment"><a href="https://tc39.es/ecma262/#global-environment">global environment</a></emu-xref>. That Map contains a <dfn id="builtin-module-record">Builtin Module Record</dfn> for each builtin module availble within the implementation. The fields of Builtin Module Records are specified in <emu-xref href="#table-41" id="_ref_5"><a href="#table-41">Table 4</a></emu-xref>.</p>
+    <emu-table id="table-41" caption="Builtin Module Record Fields"><figure><figcaption>Table 4: <emu-xref href="#builtin-module-record" id="_ref_104"><a href="#builtin-module-record">Builtin Module Record</a></emu-xref> Fields</figcaption>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            Field Name
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Meaning
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [[Identifier]]
+          </td>
+          <td>
+            String
+          </td>
+          <td>
+            The name used to refer to this Builtin Library. This must be unique in the Map of builtin library modules.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[SyntheticModuleRecord]]
+          </td>
+          <td>
+            ModuleRecord
+          </td>
+          <td>
+            The module record for builtin library.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[HostDefined]]
+          </td>
+          <td>
+            Any, default value is <emu-val>undefined</emu-val>.
+          </td>
+          <td>
+            Field reserved for use by host environments that need to associate additional information with this Library.
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </figure></emu-table>
+
+    <h2>Loaders</h2>
+    <p>A <dfn id="builtin-module-loader">Loader</dfn> provides the means of resolving and loading builtin modules stored in an implementation defined way. There can be multiple loaders, each responsible for resolving and loading builtin modules. Multiple loaders can resolve the modules specified with the same <var>ModuleSpecifier</var>. A loader must implement the methods described in <emu-xref href="#table-builtin-module-resolution-methods" id="_ref_6"><a href="#table-builtin-module-resolution-methods">Table 7</a></emu-xref>. The base ECMAScript loader is included in the <emu-xref href="#global-environment"><a href="https://tc39.es/ecma262/#global-environment">global environment</a></emu-xref>.</p>
+
+    <h2>Global Environment</h2>
+    <p>The following additional fields are provided on the <emu-xref href="#global-environment"><a href="https://tc39.es/ecma262/#global-environment">global environment</a></emu-xref> as described in <emu-xref href="#table-42" id="_ref_7"><a href="#table-42">Table 5</a></emu-xref>.</p>
+
+    <emu-table id="table-42" caption="Additional Global Environment Fields"><figure><figcaption>Table 5: Additional Global Environment Fields</figcaption>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            Field Name
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Meaning
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [[BuiltinModuleMap]]
+          </td>
+          <td>
+            A <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">Record</a></emu-xref> { [[Identifier]]: String, [[ModuleRecord]]: <emu-xref href="#builtin-module-record" id="_ref_105"><a href="#builtin-module-record">Builtin Module Record</a></emu-xref> }
+          </td>
+          <td>
+            Each Identifier is the same identifier of the associated <emu-xref href="#builtin-module-record" id="_ref_106"><a href="#builtin-module-record">Builtin Module Record</a></emu-xref>.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [[Loader]]
+          </td>
+          <td>
+            The ECMAScript language <emu-xref href="#builtin-module-loader" id="_ref_107"><a href="#builtin-module-loader">Loader</a></emu-xref>.
+          </td>
+          <td>
+            The <emu-xref href="#builtin-module-loader" id="_ref_108"><a href="#builtin-module-loader">Loader</a></emu-xref> that implements the builtin module resolution and loading.
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </figure></emu-table>
+
+    <p>A <dfn id="builtin-module-resolution-record">Builtin Module Resolution Record</dfn> is used to represent information during the loading of a module built in to the host. Resolution and loading of these modules occurs locally.</p>
+    <p>Builtin Module Records are specified in <emu-xref href="#table-builtin-module-record-fields" id="_ref_8"><a href="#table-builtin-module-record-fields">Table 6</a></emu-xref></p>
+    <emu-table id="table-builtin-module-record-fields" caption="Builtin Module Resolution Record"><figure><figcaption>Table 6: <emu-xref href="#builtin-module-resolution-record" id="_ref_109"><a href="#builtin-module-resolution-record">Builtin Module Resolution Record</a></emu-xref></figcaption>
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              Field Name
+            </th>
+            <th>
+              Value Type
+            </th>
+            <th>
+              Meaning
+            </th>
+          </tr>
+          <tr>
+            <td>
+              [[Status]]
+            </td>
+            <td>
+              String
+            </td>
+            <td>
+              Initially <code>"uninitialized"</code>. Transitions to <code>"resolving"</code>, <code>"resolved"</code>, <code>"loading"</code>, <code>"loaded"</code> (in that order) as the module progresses throughout the loading process.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              [[ResolvingLoaders]]
+            </td>
+            <td>
+              <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of Loaders
+            </td>
+            <td>
+              The list of all Loaders that can resolve and load this module. The list is sorted from highest priority to lowest.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </figure></emu-table>
+
+    <p>Builtin Module Resolution Records are used with the methods specified in <emu-xref href="#table-builtin-module-resolution-methods" id="_ref_9"><a href="#table-builtin-module-resolution-methods">Table 7</a></emu-xref></p>
+    <emu-table id="table-builtin-module-resolution-methods" caption="Builtin Module Resolution Methods"><figure><figcaption>Table 7: Builtin Module Resolution Methods</figcaption>
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              Method
+            </th>
+            <th>
+              Purpose
+            </th>
+          </tr>
+          <tr>
+            <td>
+              ResolveModuleIdentifier()
+            </td>
+            <td>
+              Determine if an imported can resolve a module.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              LoadModuleIdentifier()
+            </td>
+            <td>
+              Load a module from the current importer.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </figure></emu-table>
+
+    <emu-clause id="sec-resolve-module-identifier">
+      <h1><span class="secnum">3.1.1</span> ResolveModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</h1>
+
+      <p>The ResolveModuleIdentifier concrete method implements the module resolution part of the Builtin Module import process.</p>
+      <p>Each <emu-xref href="#builtin-module-loader" id="_ref_110"><a href="#builtin-module-loader">Loader</a></emu-xref> needs to provide this method to participate in the Builtin Module resolution and loading process. The abstract method described here is what is required for the ECMAScript language implementation. Hosts that provide additional Loaders must provide a ResolveModuleIdentifier method each <emu-xref href="#builtin-module-loader" id="_ref_111"><a href="#builtin-module-loader">Loader</a></emu-xref>.</p>
+      <p>If the <emu-xref href="#builtin-module-loader" id="_ref_112"><a href="#builtin-module-loader">Loader</a></emu-xref> is able to successfully resolve the module identified by <var>ModuleIdentifier</var>, it sets this ResolveModuleResolutionRecord's [[Status]] to <code>"resolved"</code> and adds the current <var>Loader</var> to the front of the [[ResolvingLoaders]] list.</p>
+
+      <p>This abstract method performs the following steps:</p>
+
+      <emu-alg><ol><li>Let <var>resolution</var> be this <emu-xref href="#builtin-module-resolution-record" id="_ref_113"><a href="#builtin-module-resolution-record">Builtin Module Resolution Record</a></emu-xref>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>resolution</var>.[[Status]] is <code>"resolving "</code> or <code>"resolved"</code>.</li><li>If <var>ModuleIdentifier</var> does not begin with <code>"js:"</code>, then<ol><li>Return.</li></ol></li><li>Let <var>localModuleIdentifier</var> be a substring of <var>ModuleIdentifier</var> from the index after <code>"js:"</code>.</li><li>Let <var>globalEnvironment</var> be the <emu-xref href="#global-environment"><a href="https://tc39.es/ecma262/#global-environment">global environment</a></emu-xref> of <var>ReferencingModule</var>.[[Environment]].</li><li>If <var>globalEnvironment</var>.[[BuiltinModuleMap]] contains an entry <var>e</var> such that <var>e</var>.[[Identifier]] is <var>localModuleIdentifier</var>, then<ol><li>Set <var>resolution</var>.[[Status]] to <code>"resolved"</code>.</li></ol></li><li>Let <var>loader</var> be <var>globalEnvironment</var>.[[Loader]].</li><li>Push <var>loader</var> on the front of <var>resolution</var>.[[ResolvingLoaders]].</li><li>Return.</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-load-module-identifier">
+      <h1><span class="secnum">3.1.2</span> LoadModuleIdentifier ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</h1>
+
+      <p>The LoadModuleIdentifier concrete method implements the module loading part of the Builtin Module import process.</p>
+      <p>Each <emu-xref href="#builtin-module-loader" id="_ref_114"><a href="#builtin-module-loader">Loader</a></emu-xref> needs to provide this method to participate in the Builtin Module resolution and loading process. The abstract method described here is what is required for the ECMAScript language implementation. Hosts that provide additional Loaders must provide a ResolveModuleIdentifier method each <emu-xref href="#builtin-module-loader" id="_ref_115"><a href="#builtin-module-loader">Loader</a></emu-xref>.</p>
+      <p>If the <emu-xref href="#builtin-module-loader" id="_ref_116"><a href="#builtin-module-loader">Loader</a></emu-xref> is able to successfully load the <var>module</var>, it ResolveModuleIdentifier set module's [[Status]] to <code>"resolved"</code> and adds the current <var>Loader</var> to the front of the [[ResolvingLoaders]] list.</p>
+
+      <p>This abstract method performs the following steps:</p>
+
+      <emu-alg><ol><li>Let <var>resolution</var> be this <emu-xref href="#builtin-module-resolution-record" id="_ref_117"><a href="#builtin-module-resolution-record">Builtin Module Resolution Record</a></emu-xref>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>resolution</var>.[[Status]] is <code>"loading"</code>.</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>resolution</var>.[[ResolvingLoaders]] has at least one element.</li><li>Let <var>loader</var> be the first element of <var>resolution</var>.[[ResolvingLoaders]].</li><li>If <var>loader</var> ≠ <var>globalEnvironment</var>.[[Loader]], then<ol><li>Return <emu-val>undefined</emu-val>.</li></ol></li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>ModuleIdentifier</var> begins with <code>"js:"</code>.</li><li>Let <var>localModuleIdentifier</var> be a substring of <var>ModuleIdentifier</var> from the index after <code>"js:"</code>.</li><li>Let <var>globalEnvironment</var> be the <emu-xref href="#global-environment"><a href="https://tc39.es/ecma262/#global-environment">global environment</a></emu-xref> of _ReferencingModule.[[Environment]].</li><li>Let <var>moduleMap</var> be <var>globalEnvironment</var>.[[BuiltinModuleMap]].</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>moduleMap</var> contains an entry <var>e</var> such that <var>e</var>.[[Identifer]] is <var>localModuleIdentifier</var>.</li><li>Let <var>moduleRecord</var> be <var>e</var>.[[ModuleRecord]].</li><li>Perform <var>moduleRecord</var>.Instantiate().</li><li>Return <var>moduleRecord</var>.Evaluate().</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-import">
+      <h1><span class="secnum">3.1.3</span> Importing</h1>
+      <p>Importing a Builtin Module involves resolving where the module can be loaded from and then actually loading the module. One or more Loaders can participate in the importing process.</p>
+
+      <p>A <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of loaders in available in an implementation defined way. The first loader in that list must be the ECMAScript loader. Subsequent loaders in that list appear in decending resolution order. Loading priority order starts from the back of the list.</p>
+      <emu-clause id="sec-import-builtin-module">
+        <h1><span class="secnum">3.1.3.1</span> ImportBuiltinModule ( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> )</h1>
+        <p>ImportBuiltinModule is the abstract operation that returns the concrete <emu-xref href="#sec-abstract-module-records" id="_ref_118"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> instance that corresponds to the <emu-nt id="_ref_160"><a href="#prod-ModuleSpecifier">ModuleSpecifier</a></emu-nt> String, <var>specifier</var>, occurring within the context of the module represented by the <emu-xref href="#sec-abstract-module-records" id="_ref_119"><a href="#sec-abstract-module-records">Module Record</a></emu-xref> <var>referencingModule</var>.</p>
+
+        <p>This abstract operation performs the following steps.</p>
+        <emu-alg><ol><li>Let <var>resolution</var> be <emu-xref href="#builtin-module-record" id="_ref_120"><a href="#builtin-module-record">Builtin Module Record</a></emu-xref> { [[Status]]: <code>"uninitialized"</code>, [[ResolvingLoaders]]: <code>"[ ]"</code> }.</li><li>Let <var>loaders</var> be the host-defined <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> of Loaders.</li><li>For each element <var>loader</var> in <var>loaders</var>, in <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> order, do<ol><li>Perform <var>loader</var>.ResolveModuleIdentifier( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> ).</li></ol></li><li>For each element <var>loader</var> in <var>loaders</var>, in reverse <emu-xref href="#sec-list-and-record-specification-type"><a href="https://tc39.es/ecma262/#sec-list-and-record-specification-type">List</a></emu-xref> order, do<ol><li>Let <var>loadResult</var> be <var>loader</var>.LoadModuleIdentifier( <var>ModuleIdentifier</var>, <var>ReferencingModule</var> ).</li><li>If _loadResult ≠ <var>undefined</var>, then<ol><li>Return <var>loadResult</var>.</li></ol></li></ol></li><li>Return <emu-val>undefined</emu-val>.</li></ol></emu-alg>
+      </emu-clause>
+    </emu-clause>
+  </emu-clause>
+</emu-clause>
+</ins>
+
+<emu-clause id="sec-global-object">
+  <h1><span class="secnum">4</span> The Global Object</h1>
+  <p>...</p>
+  <emu-clause id="sec-other-properties-of-the-global-object">
+    <h1><span class="secnum">4.1</span> Other Properties of the Global Object</h1>
+
+    <emu-clause id="sec-atomics">
+      <h1><span class="secnum">4.1.1</span> Atomics</h1>
+      <p>See <emu-xref href="#sec-atomics-object"><a href="https://tc39.es/ecma262/#sec-atomics-object">24.4</a></emu-xref>.</p>
+    </emu-clause>
+
+    <emu-clause id="sec-json">
+      <h1><span class="secnum">4.1.2</span> JSON</h1>
+      <p>See <emu-xref href="#sec-json-object"><a href="https://tc39.es/ecma262/#sec-json-object">24.5</a></emu-xref>.</p>
+    </emu-clause>
+
+    <emu-clause id="sec-math">
+      <h1><span class="secnum">4.1.3</span> Math</h1>
+      <p>See <emu-xref href="#sec-math-object"><a href="https://tc39.es/ecma262/#sec-math-object">20.3</a></emu-xref>.</p>
+    </emu-clause>
+
+    <emu-clause id="sec-reflect">
+      <h1><span class="secnum">4.1.4</span> Reflect</h1>
+      <p>See <emu-xref href="#sec-reflect-object"><a href="https://tc39.es/ecma262/#sec-reflect-object">26.1</a></emu-xref>.</p>
+    </emu-clause>
+
+    <ins class="block">
+    <emu-clause id="sec-builtinModules">
+      <h1><span class="secnum">4.1.5</span> BuiltinModule</h1>
+      <p>See <emu-xref href="#sec-builtin_module-object" id="_ref_10"><a href="#sec-builtin_module-object">5</a></emu-xref>.</p>
+    </emu-clause>
+    </ins>
+  </emu-clause>
+</emu-clause>
+
+<ins class="block">
+<emu-clause id="sec-builtin_module-object">
+  <h1><span class="secnum">5</span> BuiltinModule Object</h1>
+    <h1>The BuiltinModule Object</h1>
+    <p>The BuiltinModule object:</p>
+    <ul>
+      <li>is the initial value of the <emu-val>"BuiltinModule"</emu-val> property of the <emu-xref href="#sec-global-object" id="_ref_121"><a href="#sec-global-object">global object</a></emu-xref>.</li>
+      <li>is an ordinary object.</li>
+      <li>has a [[Prototype]] internal slot whose value is %Object.prototype%.</li>
+      <li>is not a <emu-xref href="#function-object"><a href="https://tc39.es/ecma262/#function-object">function object</a></emu-xref>.</li>
+      <li>does not have a [[Construct]] internal method; it cannot be used as a <emu-xref href="#constructor"><a href="https://tc39.es/ecma262/#constructor">constructor</a></emu-xref> with the <code>new</code> operator.</li>
+      <li>does not have a [[Call]] internal method; it cannot be invoked as a function.</li>
+    </ul>
+
+    <emu-clause id="sec-builtin-module.export">
+      <h1><span class="secnum">5.1</span> BuiltinModule.export ( <var>moduleSpecifier</var>, <var>exports</var> )</h1>
+      <p>When the <code>export</code> function is called with arguments <var>moduleSpecifier</var>, and <var>exports</var>, the following steps are taken:</p>
+      <emu-alg><ol><li>Let <var>moduleExists</var> be <emu-xref aoid="HostHasBuiltinModule" id="_ref_122"><a href="#sec-hosthasbuiltinmodule">HostHasBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var> ).</li><li>Let <var>exportNames</var> be <var>exports</var>.[[OwnPropertyKeys]].</li><li>If <var>moduleExists</var>, then<ol><li>Let <var>module</var> be <emu-xref aoid="HostResolveBuiltinModule" id="_ref_123"><a href="#sec-hostresolvebuiltinmodule">HostResolveBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var> ).</li><li>Set <var>module</var>.[[ExportNames]] to <var>exportNames</var>.</li></ol></li><li>Else,<ol><li>Let <var>module</var> be <emu-xref aoid="CreateSyntheticModule" id="_ref_124"><a href="#sec-createsyntheticmodule">CreateSyntheticModule</a></emu-xref>( <var>exportNames</var>, builtin evaluation steps, <emu-xref href="#current-realm"><a href="https://tc39.es/ecma262/#current-realm">the current Realm Record</a></emu-xref>, <emu-val>undefined</emu-val>).</li></ol></li><li>Call <emu-xref aoid="HostCreateBuiltinModule" id="_ref_125"><a href="#sec-hostcreatebuiltinmodule">HostCreateBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var>, <var>module</var> ).</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-builtin-module.freezeModule">
+      <h1><span class="secnum">5.2</span> BuiltinModule.freezeModule ( <var>moduleSpecifier</var> )</h1>
+      <p>When the <code>freezeModule</code> function is called with arguments <var>moduleSpecifier</var>, the following steps are taken:</p>
+      <emu-note><span class="note">Note</span><div class="note-contents">Freezing probably needs to be done in a script or <emu-xref href="#sec-execution-contexts"><a href="https://tc39.es/ecma262/#sec-execution-contexts">execution context</a></emu-xref> table instead of for the whole host.</div></emu-note>
+      <emu-alg><ol><li>Let <var>module</var> be <emu-xref aoid="HostResolveBuiltinModule" id="_ref_126"><a href="#sec-hostresolvebuiltinmodule">HostResolveBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var> ).</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>module</var> is a <var>SyntheticModuleRecord</var>.</li><li>Perform ? <var>module</var>.Freeze().</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-builtin-module.freezeAllModules">
+      <h1><span class="secnum">5.3</span> BuiltinModule.freezeAllModules ( )</h1>
+      <p>When the <code>freezeAllModules</code> function is called, the following steps are taken:</p>
+      <emu-note><span class="note">Note</span><div class="note-contents">Freezing probably needs to be done in a script or <emu-xref href="#sec-execution-contexts"><a href="https://tc39.es/ecma262/#sec-execution-contexts">execution context</a></emu-xref> table instead of for the whole host.</div></emu-note>
+      <emu-alg><ol><li>Freeze all modules for <var>scriptContext</var>.ScriptOrModule.</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-builtin-module.hasModule">
+      <h1><span class="secnum">5.4</span> BuiltinModule.hasModule ( <var>moduleSpecifier</var> )</h1>
+      <p>When the <code>hasModule</code> function is called with arguments <var>moduleSpecifier</var> the following steps are taken:</p>
+      <emu-alg><ol><li>Let <var>moduleExists</var> be <emu-xref aoid="HostHasBuiltinModule" id="_ref_127"><a href="#sec-hosthasbuiltinmodule">HostHasBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var>).</li><li>Return <var>moduleExists</var>.</li></ol></emu-alg>
+    </emu-clause>
+
+    <emu-clause id="sec-builtin-module.import">
+      <h1><span class="secnum">5.5</span> BuiltinModule.import ( <var>moduleSpecifier</var> )</h1>
+      <p>When the <code>export</code> function is called with arguments <var>moduleSpecifier</var>, the following steps are taken:</p>
+      <emu-alg><ol><li>Let <var>module</var> be <emu-xref aoid="HostResolveBuiltinModule" id="_ref_128"><a href="#sec-hostresolvebuiltinmodule">HostResolveBuiltinModule</a></emu-xref>( <var>scriptContext</var>.ScriptOrModule, <var>moduleSpecifier</var>).</li><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>module</var> is a <var>SyntheticModuleRecord</var>.</li><li>Perform ? <var>module</var>.Evaluate().</li><li>Let <var>namespace</var> be <emu-xref aoid="GetModuleNamespace" id="_ref_129"><a href="#sec-getmodulenamespace">GetModuleNamespace</a></emu-xref>( <var>module</var> ).</li><li>Return <var>namespace</var>.</li></ol></emu-alg>
+    </emu-clause>
+  </emu-clause>
+  </ins>
+
+<emu-annex id="sec-host-layering-points">
+  <h1><span class="secnum">A</span> Host Layering Points</h1>
+  <emu-annex id="sec-host-hooks-summary">
+    <h1><span class="secnum">A.1</span> Host Hooks</h1>
+    <p><b>HostCallJobCallback(...)</b></p>
+    <p><b>HostEnqueueFinalizationRegistryCleanupJob(...)</b></p>
+    <p><b>HostEnqueuePromiseJob(...)</b></p>
+    <p><b><emu-xref aoid="HostEnsureCanCompileStrings" id="_ref_130"><a href="https://tc39.es/ecma262/#sec-hostensurecancompilestrings">HostEnsureCanCompileStrings</a></emu-xref>(...)</b></p>
+    <p><b>HostFinalizeImportMeta(...)</b></p>
+    <p><b>HostGetImportMetaProperties(...)</b></p>
+    <p><b>HostHasSourceTextAvailable(...)</b></p>
+    <p><b><emu-xref aoid="HostImportModuleDynamically" id="_ref_131"><a href="#sec-hostimportmoduledynamically">HostImportModuleDynamically</a></emu-xref>(...)</b></p>
+    <p><b>HostMakeJobCallback(...)</b></p>
+    <p><b><emu-xref aoid="HostPromiseRejectionTracker" id="_ref_132"><a href="https://tc39.es/ecma262/#sec-host-promise-rejection-tracker">HostPromiseRejectionTracker</a></emu-xref>(...)</b></p>
+    <p><b><ins><emu-xref aoid="HostHasBuiltinModule" id="_ref_133"><a href="#sec-hosthasbuiltinmodule">HostHasBuiltinModule</a></emu-xref>(...)</ins></b></p>
+    <p><b><ins><emu-xref aoid="HostCreateBuiltinModule" id="_ref_134"><a href="#sec-hostcreatebuiltinmodule">HostCreateBuiltinModule</a></emu-xref>(...)</ins></b></p>
+    <p><b><ins><emu-xref aoid="HostResolveBuiltinModule" id="_ref_135"><a href="#sec-hostresolvebuiltinmodule">HostResolveBuiltinModule</a></emu-xref>(...)</ins></b></p>
+    <p><b><emu-xref aoid="HostResolveImportedModule" id="_ref_136"><a href="#sec-hostresolveimportedmodule">HostResolveImportedModule</a></emu-xref>(...)</b></p>
+    <p><b><emu-xref aoid="InitializeHostDefinedRealm" id="_ref_137"><a href="https://tc39.es/ecma262/#sec-initializehostdefinedrealm">InitializeHostDefinedRealm</a></emu-xref>(...)</b></p>
+  </emu-annex>
+
+
+</emu-annex></div></body></html>
