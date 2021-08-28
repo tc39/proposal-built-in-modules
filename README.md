@@ -78,7 +78,7 @@ the standard library components can be accessed using the current asynchronous `
 Module scripts can also access built in library components using the `import` syntax.
 Traditional script code will be able to access these same standard library components through
 a new synchronous API, `importNow()`.
-Most of these mechanism should already be familiar to developers, allowing them to opt-in to
+Most of these mechanisms should already be familiar to developers, allowing them to opt-in to
 this built in library functionality with little effort.
 
 Modules for the standard library should be able to be written in plain JavaScript for the most part but for
@@ -88,7 +88,7 @@ hot pieces of code the engine could provide a native implementation.
 
 To import modules from the standard library the engine has to be able to distinguish between standard library
 modules and other (user defined) modules. To allow the engine to do this standard library modules will use a
-prefix in the module identifier string. This is prefered over other alternatives because it is does not
+prefix in the module identifier string. This is preferred over other alternatives because it is does not
 introduce new syntax for loading standard library modules and stays close to the `import` statement developers
 should already be familiar with.
 
@@ -106,7 +106,7 @@ when importing from using the `js:` prefix across different implementations and 
 modules are available across these implementations (not considering implementation constraints, vendor
 timelines or version differences).
 
-It is completely feasable that more namespaces are introduced which are goverened by other standards bodies or
+It is completely feasible that more namespaces are introduced which are goverened by other standards bodies or
 organizations.  However it is important that these namespaces stay independent of each other to avoid
 conflicts, hamper development within namespaces due to outside pollution or time constraints due to
 dependencies on other organizations.
@@ -127,9 +127,9 @@ can still be done using `extend` or `Object.create`.
 
 We can start off by conventionally enforcing `Object.freeze` on exported Objects from standard library modules.
 If this turns out to be hard to check and enforce a separate proposal can be created to describe automatically
-freezing prototypes at the module boudary for standard library modules.
+freezing prototypes at the module boundary for standard library modules.
 
-*Note, the current direction is to freeze module contents thus requiring shimming code to wrap module classes and objects.  Given some discussion around this point, it may be dropped from the proposal before built in modulesa re added to the standard.*
+*Note, the current direction is to freeze module contents thus requiring shimming code to wrap module classes and objects.  Given some discussion around this point, it may be dropped from the proposal before built in modules are added to the standard.*
 
 ## Module Resolution
 
@@ -233,7 +233,7 @@ import { ... } from <SomeStandardModule>;
 
 While this makes importing standard library modules  distinctly different from user defined modules this is
 also one of the downsides. The syntax is different from the import syntax developers should already be
-familiar with and a dynamic variant would be difficult (gramar wise).
+familiar with and a dynamic variant would be difficult (grammar wise).
 
 Not using a prefix also has the downside of requiring everything from the standard library to live in the same
 space creating a new “global” namespace and preventing the use of multiple namespaces for different contexts.
@@ -254,7 +254,7 @@ include { ... } from <SomeStandardModule>;
 
 > Important: The `include` keyword does not exist and is used for illustrative purposes only
 
-The seperate keyword is emphasised by combining it with an Identifier for the _ModuleSpecifier_. The separate
+The separate keyword is emphasised by combining it with an Identifier for the _ModuleSpecifier_. The separate
 keyword already distingishes the module enough so we can also safely use a string literal for the
 _ModuleSpecifier_:
 
